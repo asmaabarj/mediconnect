@@ -29,11 +29,14 @@ class MedicamentController extends Controller
         $medicaments = Medicament::with('specialite')->where('statut', '1')->get();    
         $specialities = Specialite::all();
         $specialiteCount = $specialities->count();
-    
+        $MedicamentCount = $medicaments->count();
+
         return view('admin.admin', [
             'medicaments' => $medicaments,
             'specialities' => $specialities,
             'specialiteCount' => $specialiteCount,
+            'MedicamentCount' => $MedicamentCount,
+
         ]);
     }
     
