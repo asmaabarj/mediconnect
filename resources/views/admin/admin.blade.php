@@ -48,7 +48,7 @@
                 <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
                     <div class="flex justify-between ">
                         <div>
-                            <div class="text-2xl font-semibold mb-1">10</div>
+                            <div class="text-2xl font-semibold mb-1"> {{ $specialiteCount }}</div>
                             <div class="text-sm font-medium text-gray-400">Medical specialties</div>
                         </div>
                     </div>

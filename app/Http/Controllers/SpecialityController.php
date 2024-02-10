@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class SpecialityController extends Controller
 {
+    
     public function createSpeciality(Request $request)
     {
         $data = $request->validate([
@@ -24,14 +25,20 @@ class SpecialityController extends Controller
     }
 
     public function listSpecialities()
-    {
-        $specialities = Specialite::all();
-        
-        return view('admin.admin', ['specialities' => $specialities]);
-    }
+{
+    $specialities = Specialite::all();
+    $specialiteCount = $specialities->count();
+
+    return view('admin.admin', [
+        'specialities' => $specialities,
+        'specialiteCount' => $specialiteCount,
+    ]);
+}
+
     public function DeleteSpeciality(Specialite $Specialite)
    {
       $Specialite->delete();
       return redirect('/admin');
    }
+   
 }
