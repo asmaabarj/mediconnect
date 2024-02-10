@@ -266,19 +266,19 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="whitespace-nowrap">
-                                <tr class="odd:bg-blue-50">
+                            @foreach ($medicaments as $medicament)
+                                  <tr class="odd:bg-blue-50">
                                     <td class="px-6 py-3 text-sm">
                                         <div class="flex items-center cursor-pointer">
                                             <div class="ml-4">
-                                                <p class="text-sm text-black"></p>
+                                                <p class="text-sm text-black">{{ $medicament->name }}</p>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-6 py-3 text-sm">
                                         <div class="flex items-center cursor-pointer">
                                             <div class="ml-4">
-                                                <p class="text-sm text-black"></p>
+                                                <p class="text-sm text-black">{{ $medicament->specialite->name }}</p>
                                             </div>
                                         </div>
                                     </td>
@@ -315,6 +315,7 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

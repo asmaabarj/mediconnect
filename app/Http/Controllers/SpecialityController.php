@@ -24,16 +24,8 @@ class SpecialityController extends Controller
         return redirect('/admin');
     }
 
-    public function listSpecialities()
-{
-    $specialities = Specialite::all();
-    $specialiteCount = $specialities->count();
 
-    return view('admin.admin', [
-        'specialities' => $specialities,
-        'specialiteCount' => $specialiteCount,
-    ]);
-}
+
 
     public function DeleteSpeciality(Specialite $Specialite)
    {

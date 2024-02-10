@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MedicamentController;
@@ -38,10 +37,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/admin', [SpecialityController::class, 'listSpecialities']);
 Route::post('/apah', [SpecialityController::class, 'createSpeciality']);
-route::delete('/deleting/{specialite}', [SpecialityController::class, 'DeleteSpeciality']);
+Route::delete('/deleting/{specialite}', [SpecialityController::class, 'DeleteSpeciality']);
 Route::post('/add-medicament', [MedicamentController::class, 'addMedicament']);
-
+Route::get('/admin', [MedicamentController::class, 'listMedicamentsAndSpecialities']);
 
 require __DIR__ . '/auth.php';

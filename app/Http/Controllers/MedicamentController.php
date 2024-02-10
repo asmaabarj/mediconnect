@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Medicament;
+use App\Models\Specialite;
+use Illuminate\Http\Request;
 
 class MedicamentController extends Controller
 {
@@ -21,6 +22,19 @@ class MedicamentController extends Controller
         ]);
 
         return redirect('/admin');
-        }
+    }
 
+    public function listMedicamentsAndSpecialities()
+    {
+        $medicaments = Medicament::with('specialite')->where('statut', '1')->get();    
+        $specialities = Specialite::all();
+        $specialiteCount = $specialities->count();
+    
+        return view('admin.admin', [
+            'medicaments' => $medicaments,
+            'specialities' => $specialities,
+            'specialiteCount' => $specialiteCount,
+        ]);
+    }
+    
 }
