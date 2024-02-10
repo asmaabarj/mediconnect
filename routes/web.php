@@ -41,5 +41,6 @@ Route::post('/apah', [SpecialityController::class, 'createSpeciality']);
 Route::delete('/deleting/{specialite}', [SpecialityController::class, 'DeleteSpeciality']);
 Route::post('/add-medicament', [MedicamentController::class, 'addMedicament']);
 Route::get('/admin', [MedicamentController::class, 'listMedicamentsAndSpecialities']);
+Route::post('/delete-medicament', [MedicamentController::class, 'deleteMedicament'])->name('deleteMedicament');
 
 require __DIR__ . '/auth.php';

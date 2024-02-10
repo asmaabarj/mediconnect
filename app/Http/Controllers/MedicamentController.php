@@ -39,5 +39,15 @@ class MedicamentController extends Controller
 
         ]);
     }
+
+    public function deleteMedicament(Request $request)
+    {
+        $medicamentId = $request->medicament_id;
+        $medicament = Medicament::findOrFail($medicamentId);
+        $medicament->update(['statut' => '0']);  
+        return redirect('/admin');
+    }
+    
+    
     
 }
