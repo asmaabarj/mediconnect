@@ -29,4 +29,9 @@ class SpecialityController extends Controller
         
         return view('admin.admin', ['specialities' => $specialities]);
     }
+    public function DeleteSpeciality(Specialite $Specialite)
+   {
+      $Specialite->delete();
+      return redirect('/admin');
+   }
 }

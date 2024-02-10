@@ -205,7 +205,9 @@
                                                     </svg>
                                                 </button>
                                             </form>
-                                            <form method="post" action="">
+                                            <form action="/deleting/{{ $speciality->id }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
                                                 <button class="mr-4" type="submit" name="delete" value="">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                         class="w-5 fill-black hover:fill-red-700" viewBox="0 0 24 24">

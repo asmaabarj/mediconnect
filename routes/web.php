@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/admin', [SpecialityController::class, 'listSpecialities']);
 Route::post('/apah', [SpecialityController::class, 'createSpeciality']);
+route::delete('/deleting/{specialite}', [SpecialityController::class, 'DeleteSpeciality']);
 
 
 require __DIR__ . '/auth.php';
