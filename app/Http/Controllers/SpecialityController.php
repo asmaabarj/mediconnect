@@ -27,10 +27,12 @@ class SpecialityController extends Controller
 
 
 
-    public function DeleteSpeciality(Specialite $Specialite)
-   {
-      $Specialite->delete();
-      return redirect('/admin');
-   }
-   
+    
+   public function DeleteSpeciality(Request $request)
+    {
+        $specialityId = $request->specialite_id;
+        $specialite = Specialite::findOrFail($specialityId);
+        $specialite->update(['statut' => '0']);  
+        return redirect('/admin');
+    }
 }

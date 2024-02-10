@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('specialite', function (Blueprint $table) {
+        Schema::create('specialites', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('name');
+            $table->enum('statut', ['1', '0'])->default('1');
+
         });
     }
 

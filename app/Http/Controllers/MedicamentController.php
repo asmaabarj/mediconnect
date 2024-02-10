@@ -27,7 +27,7 @@ class MedicamentController extends Controller
     public function listMedicamentsAndSpecialities()
     {
         $medicaments = Medicament::with('specialite')->where('statut', '1')->get();    
-        $specialities = Specialite::all();
+        $specialities = Specialite::where('statut', '1')->get(); 
         $specialiteCount = $specialities->count();
         $MedicamentCount = $medicaments->count();
 

@@ -209,10 +209,10 @@
                                                         </svg>
                                                     </button>
                                                 </form>
-                                                <form action="/deleting/{{ $speciality->id }}" method="post">
+                                                <form method="post" action="{{ route('deleteSpecialite') }}">
                                                     @csrf
-                                                    @method('DELETE')
-                                                    <button class="mr-4" type="submit"
+                                                    <input type="hidden" name="specialite_id" value="{{ $speciality->id }}">
+                                                    <button class="mr-4" type="submit" name="delete" 
                                                         onclick="return confirm('Are you sure you want to delete {{ $speciality->name }}?')">
                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                             class="w-5 fill-black hover:fill-red-700"
