@@ -145,16 +145,14 @@
                                                 <input type="text" name="MedicamentName" id="MedicamentName"
                                                     class="mt-1 p-2 block w-full border-gray-300 rounded-md"
                                                     placeholder="Enter Medicament name">
-                                                <div class="mb-4">
-                                                    <label for="speciality"
-                                                        class="block text-sm font-medium text-gray-700">Speciality:</label>
-                                                    <select name="speciality" id="speciality"
-                                                        class="mt-1 p-2 block w-full border-gray-300 rounded-md"
-                                                        required>
-                                                        <option value="speciality1">Speciality 1</option>
-                                                        <option value="speciality2">Speciality 2</option>
-                                                    </select>
-                                                </div>
+                                                    <div class="mb-4">
+                                                        <label for="speciality" class="block text-sm font-medium text-gray-700">Speciality:</label>
+                                                        <select name="speciality" id="speciality" class="mt-1 p-2 block w-full border-gray-300 rounded-md" required>
+                                                            @foreach($specialities as $speciality)
+                                                                <option value="{{ $speciality->id }}">{{ $speciality->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
 
                                         </div>
                                     </div>
