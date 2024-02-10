@@ -208,7 +208,7 @@
                                             <form action="/deleting/{{ $speciality->id }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="mr-4" type="submit" name="delete" value="">
+                                                <button class="mr-4" type="submit" onclick="return confirm('Are you sure you want to delete {{ $speciality->name }}?')">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                         class="w-5 fill-black hover:fill-red-700" viewBox="0 0 24 24">
                                                         <path
