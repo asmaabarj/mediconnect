@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/admin', [SpecialityController::class, 'listSpecialities']);
 Route::post('/apah', [SpecialityController::class, 'createSpeciality']);
 
 

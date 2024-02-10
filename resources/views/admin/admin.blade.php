@@ -186,16 +186,11 @@
                                 </tr>
                             </thead>
                             <tbody class="whitespace-nowrap">
-                                <tr class="odd:bg-blue-50">
-                                    <td class="px-6 py-3 text-sm">
-                                        <div class="flex items-center cursor-pointer">
-                                            <div class="ml-4">
-                                                <p class="text-sm text-black"></p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-3">
-                                        <div class="flex">
+                                @foreach ($specialities as $speciality)
+                                    <tr class="odd:bg-blue-50">
+                                        <td class="px-6 py-3 text-sm">{{ $speciality->name }}</td>
+                                        <td class="px-6 py-3">
+                                            <div class="flex">
                                             <form method="post" action="">
                                                 <button class="mr-4" type="submit" name="edit" value="">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -226,6 +221,8 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
+
                             </tbody>
                         </table>
                     </div>
