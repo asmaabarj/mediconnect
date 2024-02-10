@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->foreignId('specialite_id')->constrained('specialite');
+            $table->foreignId('specialite_id')->constrained('specialites');
             $table->enum('statut', ['1', '0'])->default('1');
 
         });

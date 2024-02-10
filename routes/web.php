@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SpecialityController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MedicamentController;
+use App\Http\Controllers\SpecialityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/admin', [SpecialityController::class, 'listSpecialities']);
 Route::post('/apah', [SpecialityController::class, 'createSpeciality']);
 route::delete('/deleting/{specialite}', [SpecialityController::class, 'DeleteSpeciality']);
+Route::post('/add-medicament', [MedicamentController::class, 'addMedicament']);
 
 
 require __DIR__ . '/auth.php';
