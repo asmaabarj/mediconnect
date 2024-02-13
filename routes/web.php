@@ -54,5 +54,6 @@ Route::get('/doctor', function () {
 
 // Route::get('/doctor/dashboard', [DoctorController::class, 'DoctorDashboard'])->middleware(RedirectIfAuthenticated::class);
 // Route::get('/patient/dashboard', [PatientController::class, 'PatientDashboard'])->middleware(RedirectIfAuthenticated::class);
+
 Route::get('/dashboard', [PatientController::class, 'dashboard'])->name('dashboard');
 
