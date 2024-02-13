@@ -35,4 +35,5 @@ class SpecialityController extends Controller
         $specialite->update(['statut' => '0']);  
         return redirect('/admin');
     }
+
 }

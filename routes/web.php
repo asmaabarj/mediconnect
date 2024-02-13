@@ -1,8 +1,11 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\PatientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MedicamentController;
 use App\Http\Controllers\SpecialityController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +20,14 @@ use App\Http\Controllers\SpecialityController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware(RedirectIfAuthenticated::class);
 
 Route::get('/admin', function () {
     return view('admin/admin');
-});
+})->middleware(RedirectIfAuthenticated::class);
 
-// Route::get('/test', function () {
-//     return view('test');
+// Route::get('/allDoctors', function () {
+//     return view('a');
 // });
 
 Route::get('/dashboard', function () {
@@ -42,5 +45,14 @@ Route::post('/delete-specialiste', [SpecialityController::class, 'DeleteSpeciali
 Route::post('/add-medicament', [MedicamentController::class, 'addMedicament']);
 Route::get('/admin', [MedicamentController::class, 'listMedicamentsAndSpecialities']);
 Route::post('/delete-medicament', [MedicamentController::class, 'deleteMedicament'])->name('deleteMedicament');
+Route::post('/edite-speciality', [MedicamentController::class, 'listMedicamentsAndSpecialities'])->name('editeSpeciality');
 
 require __DIR__ . '/auth.php';
+Route::get('/doctor', function () {
+    return VIEW('doctor/doctor');
+})->middleware(RedirectIfAuthenticated::class);
+
+// Route::get('/doctor/dashboard', [DoctorController::class, 'DoctorDashboard'])->middleware(RedirectIfAuthenticated::class);
+// Route::get('/patient/dashboard', [PatientController::class, 'PatientDashboard'])->middleware(RedirectIfAuthenticated::class);
+Route::get('/dashboard', [PatientController::class, 'dashboard'])->name('dashboard');
+

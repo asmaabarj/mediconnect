@@ -16,9 +16,8 @@
 
 
 <body class="text-gray-800 font-inter">
-
     <section class="w-full  bg-gray-50 min-h-screen transition-all main">
-        <div class="py-2 px-6 bg-green-900 flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
+        <div class="py-2 px-6 bg-[#218063] flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
             <ul class="flex items-center text-sm ml-4">
                 <li class="mr-2">
                     <a href="" class="text-gray-400 hover:text-gray-600 font-medium">Administration</a>
@@ -26,6 +25,13 @@
                 <li class="text-gray-300 mr-2 font-medium">/</li>
                 <li class="text-white mr-2 font-medium">dashboard</li>
             </ul>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+    
+                <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    {{ __('Log Out') }}
+                </button>
+            </form>
         </div>
         <div class="p-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
@@ -75,6 +81,7 @@
                             Add
                         </button>
                     </div>
+                   
                     <div id="addSpecialtyModal" class="hidden fixed z-50 inset-0 overflow-y-auto">
                         <div
                             class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -83,6 +90,7 @@
                             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true"></span>
                             <div
                                 class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                               
                                 <form action="/apah" method="POST">
                                     @csrf
                                     <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -99,7 +107,7 @@
                                                 <label for="name"
                                                     class="block text-sm font-medium text-gray-700 mt-2">Specialty
                                                     Name:</label>
-                                                <input type="text" name="name" id="name"
+                                                    <input type="text" name="name" id="name" value="{{ $editspecialite ? $editspecialite->name : '' }}"
                                                     class="mt-1 p-2 block w-full border-gray-300 rounded-md"
                                                     placeholder="Enter specialty name">
                                             </div>
@@ -120,6 +128,9 @@
                             </div>
                         </div>
                     </div>
+                    @if($editspecialite !== null)
+                    <script>document.getElementById('addSpecialtyModal').classList.remove('hidden')</script>
+                    @endif
                     <div id="addMedicamentModal" class="hidden fixed z-50 inset-0 overflow-y-auto">
                         <div
                             class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
@@ -169,7 +180,7 @@
                                     </button>
                                     <button id="" type="submit" 
                                         class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
-                                        Add Specialty
+                                        Add Medicament
                                     </button>
                                 </div>
                                 </form>
@@ -194,8 +205,10 @@
                                         <td class="px-6 py-3 text-sm">{{ $speciality->name }}</td>
                                         <td class="px-6 py-3">
                                             <div class="flex">
-                                                <form method="post" action="">
-                                                    <button class="mr-4" type="submit" name="edit"
+                                                <form method="POST" action="/edite-speciality">
+                                                    @csrf
+                                                    <input type="hidden" name="speciality_id" value="{{ $speciality->id }}">
+                                                    <button class="mr-4" type="submit"
                                                         value="">
                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                             class="w-5 fill-black hover:fill-blue-700"
@@ -284,7 +297,7 @@
                                     </td>
                                     <td class="px-6 py-3">
                                         <div class="flex">
-                                            <form method="post" action="">
+                                            <form method="get" action="/admin">
                                                 <button class="mr-4" type="submit" name="edit" value="">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                         class="w-5 fill-black hover:fill-blue-700"

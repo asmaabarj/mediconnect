@@ -15,10 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('numTel');
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('cin')->unique();
+            $table->string('numTel');
+            $table->foreignId('specialite_id')->constrained('specialites')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->enum('role',['Admin','Patient','Doctor'])->default('Patient');
+            $table->string('desc')->nullable();
+            $table->string('photo')->nullable();
             $table->string('password');
-            $table->enum('role',['medecin','patient'])->default('patient');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -24,21 +24,31 @@ class MedicamentController extends Controller
         return redirect('/admin');
     }
 
-    public function listMedicamentsAndSpecialities()
+    public function listMedicamentsAndSpecialities(Request $request)
     {
-        $medicaments = Medicament::with('specialite')->where('statut', '1')->get();    
-        $specialities = Specialite::where('statut', '1')->get(); 
+        $specialityId = $request->input('specialite_id');
+    
+        if ($specialityId !== null) {
+            $editspecialite = Specialite::findOrFail($specialityId); 
+        } else {
+            $editspecialite = null;
+        }
+    
+        $medicaments = Medicament::with('specialite')->where('statut', '1')->get();
+        $specialities = Specialite::where('statut', '1')->get();
         $specialiteCount = $specialities->count();
         $MedicamentCount = $medicaments->count();
-
+    
         return view('admin.admin', [
             'medicaments' => $medicaments,
             'specialities' => $specialities,
             'specialiteCount' => $specialiteCount,
-            'MedicamentCount' => $MedicamentCount,
-
+            'MedicamentCount' => $MedicamentCount, 
+            'editspecialite' => $editspecialite,
         ]);
     }
+    
+    
 
     public function deleteMedicament(Request $request)
     {
@@ -47,7 +57,6 @@ class MedicamentController extends Controller
         $medicament->update(['statut' => '0']);  
         return redirect('/admin');
     }
-    
-    
+
     
 }

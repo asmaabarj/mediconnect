@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->foreignId('specialite_id')->constrained('specialities')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('specialite_id')->constrained('specialites')->cascadeOnDelete()->cascadeOnUpdate();
             $table->enum('statut', ['1', '0'])->default('1');
 
         });
