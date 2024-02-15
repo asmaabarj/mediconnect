@@ -9,11 +9,11 @@
         </p>
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+    <form id="send-verification" method="post" action="{{ route('verification.send') }}" enctype="multipart/form-data">
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -22,6 +22,12 @@
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full border-[2px] border-solid border-black outline-none py-2 pl-2" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
+        <div>
+            <x-input-label for="photo" :value="__('Picture')" />
+            <x-text-input id="photo" name="photo" type="file" class="mt-1 block w-full border-[2px] border-solid border-black outline-none py-2 pl-2" :value="old('photo', $user->photo)"  autofocus autocomplete="photo" />
+        </div>
+        
+        
 
         <div>
             <x-input-label for="email" :value="__('Email')" />

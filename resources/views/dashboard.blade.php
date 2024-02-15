@@ -23,14 +23,17 @@
         </h2>
     </x-slot>
 
-    <form action="{{ route('dashboard') }}" method="GET">
-        <label for="speciality">Choose a Speciality:</label>
-        <select name="specialityId" id="speciality">
+    <form action="{{ route('dashboard') }}" method="GET"  class="max-w-sm mt-8 mx-auto  gap-10 flex justify-center">
+        
+        <label class="sr-only" for="speciality">Underline select</label>
+        <select name="specialityId" id="speciality" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
+            <option selected>Choose a Speciality:</option>
             @foreach ($specialities as $speciality)
-                <option value="{{ $speciality->id }}">{{ $speciality->name }}</option>
+         <option value="{{ $speciality->id }}">{{ $speciality->name }}</option>
             @endforeach
         </select>
-        <button type="submit">Filter Doctors</button>
+
+        <button class="text-gray-500 font-medium bg-gray-50 px-4 rounded-md" type="submit">Searsh</button>
     </form>
 
     <div class="font-[sans-serif] text-[#333]">
