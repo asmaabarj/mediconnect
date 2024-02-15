@@ -22,38 +22,44 @@ Route::get('/', function () {
     return view('welcome');
 })->middleware(RedirectIfAuthenticated::class);
 
-Route::get('/admin', function () {
-    return view('admin/admin');
-})->middleware(RedirectIfAuthenticated::class);
 
-// Route::get('/allDoctors', function () {
-//     return view('a');
-// });
+
+Route::get('/PaHistory', function () {
+    return view('PaHistory');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
+ Route::get('/admin', function () {
+        return view('admin/admin');
+    });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+   
 });
 
 Route::post('/apah', [SpecialityController::class, 'createSpeciality']);
 Route::post('/delete-specialiste', [SpecialityController::class, 'DeleteSpeciality'])->name('deleteSpecialite');
 Route::post('/add-medicament', [MedicamentController::class, 'addMedicament']);
-Route::get('/admin', [MedicamentController::class, 'listMedicamentsAndSpecialities']);
+Route::get('/admin', [MedicamentController::class, 'listMedicamentsAndSpecialities'])->middleware('auth');
 Route::post('/delete-medicament', [MedicamentController::class, 'deleteMedicament'])->name('deleteMedicament');
 Route::post('/edite-speciality', [MedicamentController::class, 'listMedicamentsAndSpecialities'])->name('editeSpeciality');
+Route::post('/favorit', [PatientController::class, 'favorit']);
+Route::post('/reservation', [PatientController::class, 'reservation']);
 
 require __DIR__ . '/auth.php';
-Route::get('/doctor', function () {
-    return VIEW('doctor/doctor');
-})->middleware(RedirectIfAuthenticated::class);
 
-// Route::get('/doctor/dashboard', [DoctorController::class, 'DoctorDashboard'])->middleware(RedirectIfAuthenticated::class);
+Route::get('/doctor', function () {
+    return VIEW('doctor/DoctorPage');
+});
+
+// Route::get('', [DoctorController::class, 'DoctorDashboard'])->middleware(RedirectIfAuthenticated::class);
 // Route::get('/patient/dashboard', [PatientController::class, 'PatientDashboard'])->middleware(RedirectIfAuthenticated::class);
 
 Route::get('/dashboard', [PatientController::class, 'dashboard'])->name('dashboard');
+Route::post('/reserve', [PatientController::class, 'reserve'])->name('reserve');
+Route::get('/PaHistory', [PatientController::class, 'favoriteDoctors'])->name('PaHistory');
 

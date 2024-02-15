@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Medicament;
 use App\Models\Specialite;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\User;
 
 class MedicamentController extends Controller
 {
@@ -38,6 +39,9 @@ class MedicamentController extends Controller
         $specialities = Specialite::where('statut', '1')->get();
         $specialiteCount = $specialities->count();
         $MedicamentCount = $medicaments->count();
+        $doctorCount = User::where('role', 'doctor')->count();
+        $patientCount = User::where('role', 'patient')->count();
+
     
         return view('admin.admin', [
             'medicaments' => $medicaments,
@@ -45,6 +49,8 @@ class MedicamentController extends Controller
             'specialiteCount' => $specialiteCount,
             'MedicamentCount' => $MedicamentCount, 
             'editspecialite' => $editspecialite,
+            'doctorCount'=> $doctorCount,
+            'patientCount'=> $patientCount,
         ]);
     }
     

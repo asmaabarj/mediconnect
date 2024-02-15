@@ -4,20 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="{{ asset('js/modal.js') }}"></script>
     <title>Mediconnect</title>
-    <style>
 
-    </style>
 </head>
 
 
+
+
+<x-app-layout>
 <body class="text-gray-800 font-inter">
-    <section class="w-full  bg-gray-50 min-h-screen transition-all main">
-        <div class="py-2 px-6 bg-[#218063] flex items-center shadow-md shadow-black/5 sticky top-0 left-0 z-30">
+    <section class="w-full   bg-gray-50 min-h-screen transition-all main">
+        <div class="py-2 px-6 bg-[#218063] flex items-center shadow-md shadow-black/5 sticky -top-0.5 left-0 z-30">
             <ul class="flex items-center text-sm ml-4">
                 <li class="mr-2">
                     <a href="" class="text-gray-400 hover:text-gray-600 font-medium">Administration</a>
@@ -25,20 +25,14 @@
                 <li class="text-gray-300 mr-2 font-medium">/</li>
                 <li class="text-white mr-2 font-medium">dashboard</li>
             </ul>
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-    
-                <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    {{ __('Log Out') }}
-                </button>
-            </form>
+            
         </div>
         <div class="p-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+            <div class="grid grid-cols-2 md:grid-cols-4  gap-6 mb-6">
                 <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
                     <div class="flex justify-between ">
                         <div>
-                            <div class="text-2xl font-semibold mb-1">13</div>
+                            <div class="text-2xl font-semibold mb-1">{{$doctorCount}}</div>
                             <div class="text-sm font-medium text-gray-400">Doctors</div>
                         </div>
                     </div>
@@ -46,7 +40,7 @@
                 <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
                     <div class="flex justify-between mb-6">
                         <div>
-                            <div class="text-2xl font-semibold mb-1">12</div>
+                            <div class="text-2xl font-semibold mb-1">{{$patientCount}}</div>
                             <div class="text-sm font-medium text-gray-400">Patients</div>
                         </div>
                     </div>
@@ -70,7 +64,7 @@
             </div>
 
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
                     <div class="flex justify-between">
                         <div class="flex justify-between mb-4 items-start text-m font-semibold text-gray-700">
@@ -339,6 +333,7 @@
         </div>
         </div>
     </section>
+</x-app-layout>
     <script>
         function toggleModal(modalId) {
             const modal = document.getElementById(modalId);

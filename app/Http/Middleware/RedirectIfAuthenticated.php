@@ -24,6 +24,7 @@ class RedirectIfAuthenticated
                 $role = auth()->user()->role;
                 switch ($role) {
                     case 'Admin':
+                       
                         return redirect('/admin');
                     case 'Doctor':
                         return redirect('/doctor');
@@ -35,7 +36,9 @@ class RedirectIfAuthenticated
             }
         }
     
+        //   abort(401);
         return $next($request);
     }
+    
     
 }

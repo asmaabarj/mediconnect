@@ -42,6 +42,22 @@ class UsersTableSeeder extends Seeder
             'password'=>Hash::make('123456789'),
             'role'=>'Patient',
         ],
+        [
+            'name'=>'asmaa',
+            'cin'=>'123453',
+            'numTel'=>'2222222222',
+            'email'=>'asmaa@gmail.com',
+            'password'=>Hash::make('123456789'),
+            'role'=>'doctor',
+        ],
+        [
+            'name'=>'sanaa',
+            'cin'=>'146765',
+            'numTel'=>'2222222222',
+            'email'=>'sanaa@gmail.com',
+            'password'=>Hash::make('123456789'),
+            'role'=>'patient',
+        ],
 
 
     ]);

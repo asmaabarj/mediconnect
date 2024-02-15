@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreignId('specialite_id')->constrained('specialites')->cascadeOnDelete()->cascadeOnUpdate();
             $table->enum('role',['Admin','Patient','Doctor'])->default('Patient');
             $table->string('desc')->nullable();
-            $table->string('photo')->nullable();
+            $table->string('');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
