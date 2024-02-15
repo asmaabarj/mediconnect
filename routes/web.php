@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MedicamentController;
 use App\Http\Controllers\SpecialityController;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +45,7 @@ Route::middleware('auth')->group(function () {
 Route::post('/apah', [SpecialityController::class, 'createSpeciality']);
 Route::post('/delete-specialiste', [SpecialityController::class, 'DeleteSpeciality'])->name('deleteSpecialite');
 Route::post('/add-medicament', [MedicamentController::class, 'addMedicament']);
-Route::get('/admin', [MedicamentController::class, 'listMedicamentsAndSpecialities'])->middleware('auth');
+Route::get('/admin', [MedicamentController::class, 'listMedicamentsAndSpecialities']);
 Route::post('/delete-medicament', [MedicamentController::class, 'deleteMedicament'])->name('deleteMedicament');
 Route::post('/edite-speciality', [MedicamentController::class, 'listMedicamentsAndSpecialities'])->name('editeSpeciality');
 Route::post('/favorit', [PatientController::class, 'favorit']);
@@ -62,4 +63,5 @@ Route::get('/doctor', function () {
 Route::get('/dashboard', [PatientController::class, 'dashboard'])->name('dashboard');
 Route::post('/reserve', [PatientController::class, 'reserve'])->name('reserve');
 Route::get('/PaHistory', [PatientController::class, 'favoriteDoctors'])->name('PaHistory');
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 

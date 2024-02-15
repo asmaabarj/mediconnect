@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <img class="w-40" src="images/logo.png" alt="">
+                    <img class="w-40" src="{{ asset('storage/images/' . 'logo.png') }}" alt="">
                     <a href="" >
                     </a>
                 </div>

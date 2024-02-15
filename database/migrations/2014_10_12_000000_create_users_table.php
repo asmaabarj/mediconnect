@@ -18,10 +18,10 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('cin')->unique();
             $table->string('numTel');
+            $table->string('photo')->default('tsswira.png');
             $table->foreignId('specialite_id')->constrained('specialites')->cascadeOnDelete()->cascadeOnUpdate();
             $table->enum('role',['Admin','Patient','Doctor'])->default('Patient');
             $table->string('desc')->nullable();
-            $table->string('');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

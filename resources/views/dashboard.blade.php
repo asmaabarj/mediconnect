@@ -39,8 +39,8 @@
                 @foreach ($filtreddoctors as $doctor)
                     <div class="bg-white rounded-md border overflow-hidden">
                         <div class="bg-[#218063] h-28"></div>
-                        <img src="images/tsswira.png"
-                            class="w-36 h-36 border-4 border-white rounded-full -mt-16 shadow-xl inline-block" />
+                        <img src="{{ asset('storage/images/' . $doctor->photo) }}"
+                        class="w-36 h-36 border-4 border-white rounded-full -mt-16 shadow-xl inline-block" />
                         <div class="p-4">
                             <h4 class="text-base font-bold">{{ $doctor->name }}</h4>
                             <p class="text-xs font-semibold mt-1">{{ $doctor->email }}</p>
