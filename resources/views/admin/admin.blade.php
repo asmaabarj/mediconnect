@@ -91,7 +91,7 @@
                                         <div class="sm:flex sm:items-start">
                                             <div
                                                 class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-gray-100 sm:mx-0 sm:h-10 sm:w-10">
-                                                <i class="ri-pencil-line text-3xl text-gray-400"></i>
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
                                             </div>
                                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                                 <h3 class="text-lg leading-6 font-medium text-gray-900"
@@ -137,7 +137,7 @@
                                     <div class="sm:flex sm:items-start">
                                         <div
                                             class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-gray-100 sm:mx-0 sm:h-10 sm:w-10">
-                                            <i class="ri-pencil-line text-3xl text-gray-400"></i>
+                                            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
                                         </div>
                                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                             <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
@@ -309,7 +309,9 @@
                                             <form method="post" action="{{ route('deleteMedicament') }}">
                                                 @csrf
                                                 <input type="hidden" name="medicament_id" value="{{ $medicament->id }}">
-                                                <button class="mr-4" type="submit" name="delete" value="">
+                                                <button class="mr-4" type="submit" name="delete" value=""
+                                                    onclick="return confirm('Are you sure you want to delete {{ $medicament->name }}?')">
+
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                         class="w-5 fill-black hover:fill-red-700" viewBox="0 0 24 24">
                                                         <path
