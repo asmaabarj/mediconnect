@@ -10,8 +10,7 @@
 
 </head>
 
-<body style="background-size:100% 100%;"
- class="bg-[url('https://hdpng.com/images/heart-beat-png-hd-heartbeat-line-png-pulse-line-qvyc4f-1134.png')] bg-no-repeat">
+<body >
  <div class="w-full flex justify-center">    <img src="{{ asset('storage/images/' . 'logo.png') }}" alt="logo" class='w-60 mt-10 justify-center' />
  </div>
     <form method="POST"

@@ -10,8 +10,7 @@
 
 </head>
 
-<body style="background-size:100% 100%;"
- class="bg-[url('https://hdpng.com/images/heart-beat-png-hd-heartbeat-line-png-pulse-line-qvyc4f-1134.png')] bg-no-repeat">
+<body >
 
 
     <!-- Session Status -->
