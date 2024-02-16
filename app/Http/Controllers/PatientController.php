@@ -26,7 +26,7 @@ class PatientController extends Controller
         $favorites = favori::where('favori', '1')->where('patient', Auth::id());
         $doctors = User::where('role', 'Doctor')->get();
         $hours = [
-            ['label' => '8h-9h', 'start' => '21:00', 'end' => '22:00'],
+            ['label' => '8h-9h', 'start' => '08:00', 'end' => '09:00'],
             ['label' => '9h-10h', 'start' => '09:00', 'end' => '10:00'],
             ['label' => '10h-11h', 'start' => '10:00', 'end' => '11:00'],
             ['label' => '11h-12h', 'start' => '11:00', 'end' => '12:00'],
@@ -121,7 +121,7 @@ class PatientController extends Controller
             ->get();
 
         $hours = [
-            ['label' => '8h-9h', 'start' => '21:00', 'end' => '22:00'],
+            ['label' => '8h-9h', 'start' => '08:00', 'end' => '09:00'],
             ['label' => '9h-10h', 'start' => '09:00', 'end' => '10:00'],
             ['label' => '10h-11h', 'start' => '10:00', 'end' => '11:00'],
             ['label' => '11h-12h', 'start' => '11:00', 'end' => '12:00'],
