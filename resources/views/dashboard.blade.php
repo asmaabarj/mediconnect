@@ -57,7 +57,7 @@
                         <span>Notifications</span>
                     </a>
                 </li>
-                <li>
+                <li >
                     <a href="javascript:void(0)"
                         class="text-gray-800 text-sm flex items-center hover:bg-gray-100 rounded px-4 py-3 transition-all">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-[18px] h-[18px] mr-4"
@@ -75,8 +75,11 @@
                         <span>My Consultations</span>
                     </a>
                 </li>
-
-
+                <button type="button"
+                class="ml-2  px-4 absolute bottom-60 py-2.5 rounded text-white text-sm  font-semibold border-none outline-none bg-red-600 hover:bg-red-700 active:bg-red-600">
+                <span class="">emergency appointment</span>
+                
+              </button>
 
             </ul>
         </nav>

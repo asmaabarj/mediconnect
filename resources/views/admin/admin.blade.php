@@ -28,7 +28,7 @@
             
         </div>
         <div class="p-6">
-            <div class="grid grid-cols-2 md:grid-cols-4  gap-6 mb-6">
+            <div class="grid grid-cols-2 md:grid-cols-4  gap-6 my-6">
                 <div class="bg-white rounded-md border border-gray-100 p-6 shadow-md shadow-black/5">
                     <div class="flex justify-between ">
                         <div>
@@ -68,7 +68,7 @@
                 <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
                     <div class="flex justify-between">
                         <div class="flex justify-between mb-4 items-start text-m font-semibold text-gray-700">
-                            Manage Medical Specialties
+                           <U> Manage Medical Specialties</U>
                         </div>
                         <button id="addSpecialtyButton"
                             class="flex justify-between mb-4 items-start text-m font-semibold text-green-900 hover:bg-green-100 px-4 py-1 mt-10  rounded-[4px] border-green-800 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] border-solid border-[1px]">
@@ -113,7 +113,7 @@
                                             Close
                                         </button>
                                         <button id="" type="submit"
-                                            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                            class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-[#18c29c] text-base font-medium text-white hover:bg-[#18c29c] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
                                             Add Specialty
                                         </button>
                                     </div>
@@ -173,7 +173,7 @@
                                         Close
                                     </button>
                                     <button id="" type="submit" 
-                                        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-green-600 text-base font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                        class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-[#18c29c] text-base font-medium text-white hover:bg-[#18c29c] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 sm:ml-3 sm:w-auto sm:text-sm">
                                         Add Medicament
                                     </button>
                                 </div>
@@ -250,7 +250,7 @@
                 <div class="bg-white border border-gray-100 shadow-md shadow-black/5 p-6 rounded-md">
                     <div class="flex justify-between">
                         <div class="flex justify-between mb-4 items-start text-m font-semibold text-gray-700">
-                            Manage Medicaments
+                            <u>Manage Medicaments</u>
                         </div>
                         <button id="addMedicamentButton"
                             class="flex justify-between mb-4 items-start text-m font-semibold text-green-900 hover:bg-green-100 px-4 py-1 mt-10 rounded-[4px] border-green-800 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] border-solid border-[1px]">
