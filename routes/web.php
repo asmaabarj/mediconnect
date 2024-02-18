@@ -70,6 +70,8 @@ Route::get('/notifDoctor', function () {
 
 Route::get('/notifDoctor', [DoctorController::class, 'ReservationsDoc']);
 Route::get('/notifPatient', [PatientController::class, 'notification']);
+Route::post('/certificat', [DoctorController::class, 'storeCertificate'])->name('storeCertificate');
+
 
 // Route::get('', [DoctorController::class, 'DoctorDashboard'])->middleware(RedirectIfAuthenticated::class);
 // Route::get('/patient/dashboard', [PatientController::class, 'PatientDashboard'])->middleware(RedirectIfAuthenticated::class);

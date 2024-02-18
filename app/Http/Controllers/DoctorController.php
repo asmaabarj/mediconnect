@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\certificate;
 use App\Models\reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class DoctorController extends Controller
 {
-    // public function notifDoctor(){
-    //     dd('walo');
-    //     return redirect('notifDoctor');
-    // }
+   
     public function ReservationsDoc()
     {
         $medecin = Auth::id();
@@ -24,4 +22,19 @@ class DoctorController extends Controller
 
         return view('doctor.notifDoctor', ['reservations' => $reservations]);
     }
+    public function storeCertificate(Request $request)
+{
+    $request->validate([
+        'ResrvData' => 'required|exists:reservations,id',
+        'certifDays' => 'required|numeric',
+    ]);
+
+    certificate::create([
+        'id_reservation' => $request->ResrvData,
+        'certifDays' => $request->certifDays,
+    ]);
+
+
+    return redirect()->back();
+}
 }
