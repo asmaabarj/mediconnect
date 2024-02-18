@@ -43,6 +43,12 @@ class User extends Authenticatable
         return $this->belongsToMany(Specialite::class);
 
     }
+    public function reservations()
+    {
+        return $this->hasMany(reservation::class);
+
+    }
+
     public function users()
     {
         return $this->hasMany(User::class);

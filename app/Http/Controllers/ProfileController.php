@@ -33,10 +33,9 @@ class ProfileController extends Controller
      
          $validatedData = $request->validated();
      
-         // Handle the file upload
          if ($request->hasFile('photo')) {
              $photo = $request->file('photo');
-             $photoName = $photo->getClientOriginalName(); // or use any logic to generate a unique name
+             $photoName = $photo->getClientOriginalName(); 
              $photo->storeAs('images', $photoName, 'public');
              $validatedData['photo'] = $photoName;
          }

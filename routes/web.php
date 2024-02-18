@@ -29,6 +29,7 @@ Route::get('/PaHistory', function () {
     return view('PaHistory');
 });
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -56,6 +57,10 @@ require __DIR__ . '/auth.php';
 Route::get('/doctor', function () {
     return VIEW('doctor/DoctorPage');
 });
+Route::get('/notifDoctor', function () {
+    return VIEW('doctor/notifDoctor');
+});
+Route::get('/notifDoctor', [DoctorController::class, 'ReservationsDoc']);
 
 // Route::get('', [DoctorController::class, 'DoctorDashboard'])->middleware(RedirectIfAuthenticated::class);
 // Route::get('/patient/dashboard', [PatientController::class, 'PatientDashboard'])->middleware(RedirectIfAuthenticated::class);

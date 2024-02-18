@@ -36,13 +36,13 @@ class PatientController extends Controller
 
         $now = Carbon::now('Africa/Casablanca');
 
-        if ($now->hour >= 23 && $now->minute >= 58) {
-            Reservation::where('statut', '1')
-                ->update([
-                    'statut' => '0'
-                ]);
-        }
-        
+        Reservation::where('statut', '1')
+            ->whereDate('created_at', '<', $now->toDateString())
+            ->update([
+                'statut' => '0'
+            ]);
+
+
         return view('dashboard', [
             'specialities' => $specialities,
             'doctors' => $doctors,
@@ -94,21 +94,30 @@ class PatientController extends Controller
         $data['patient'] = Auth::id();
 
         $existingReservation = Reservation::where('date', $data['date'])
+            ->where('statut', '1')
             ->where('patient', $data['patient'])
             ->whereDate('created_at', '>=', now()->startOfDay())
             ->where('Medecin', $data['Medecin'])
-            ->where('statut' , '1')
             ->first();
 
+
         $existingReservations = Reservation::where('date', $data['date'])
+            ->where('statut', '1')
+
             ->where('Medecin', $data['Medecin'])
             ->first();
 
-        if (!$existingReservation && !$existingReservations) {
+        $alreadyReservedToday = Reservation::where('statut', '1')
+            ->where('patient', $data['patient'])
+            ->count();
+
+        $check = ($alreadyReservedToday >= 1);
+
+        if (!$existingReservation && !$existingReservations && !$check) {
             Reservation::create($data);
             return redirect('/dashboard')->with('success', 'Reservation successful!');
         } else {
-            return redirect('/dashboard')->with('error', 'Reservation already exists for this date and patient.');
+            return redirect('/dashboard')->with('error', 'Error: Reservation already exists for this date and patient, Or you have already passed an appointment for today.');
         }
     }
 

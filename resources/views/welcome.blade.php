@@ -18,25 +18,28 @@
     <body class="antialiased">
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
             @if (Route::has('login'))
-                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
+                <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right bg-slate-100 w-full z-10">
                     @auth
-                        <a href="{{ url('/admin') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"></a>
+                       
+                    <a href="{{ url('/admin') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"></a>
+                   
                     @else
-                        <a href="{{ route('login') }}" class="font-semibold text-gray-50 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
+                        <a href="{{ route('login') }}" class="font-semibold text-gray-50  bg-[#18c29c] px-5 py-2 rounded-md hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-50 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                            <a href="{{ route('register') }}" class="ml-2 font-semibold bg-[#18c29c] px-4 py-2 rounded-md text-gray-50 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
                         @endif
+
                     @endauth
                 </div>
             @endif
-            <div class="font-sans text-[#fff]">
+            <div class="font-sans mt-16 text-[#fff]">
                 <div class="grid lg:grid-cols-2 items-center gap-y-6 bg-[#218063]">
                   <div class="max-lg:order-1 max-lg:text-center sm:p-12 p-4">
-                    <h2 class="lg:text-5xl text-3xl font-bold mb-4 lg:!leading-[56px]">Elevate Your Experience with Modern Elegance</h2>
-                    <p class="mt-4 text-base leading-relaxed">Laboris qui Lorem ad tempor ut reprehenderit. Nostrud anim nulla officia ea sit deserunt. Eu eu quis anim aute Laboris qui Lorem ad tempor ut reprehenderit.</p>
+                    <h2 class="lg:text-4xl text-3xl font-bold mb-4 lg:!leading-[56px]">In <span class="text-orange-500">MediConnect</span> Find a healthcare professional and make an appointment <span class="text-orange-500">online!</span></h2>
+                    <p class="mt-4 text-base leading-relaxed">Fast, free and secure</p>
                     <button type='button'
-                      class="bg-transparent hover:bg-blue-600 border-2 border-white mt-10 transition-all text-white font-bold text-sm rounded-md px-6 py-2.5">Get Started</button>
+                      class="bg-transparent hover:bg-orange-600 border-2 border-white mt-10 transition-all text-white font-bold text-sm rounded-md px-6 py-2.5">Get Started</button>
                   </div>
                   <div class="lg:h-[440px] flex items-center">
                     <img src="https://cdn.givingcompass.org/wp-content/uploads/2019/08/23110456/High-quality-Healthcare-Is-About-Trust.jpg" class="w-full h-full object-cover" alt="Dining Experience" />
@@ -44,53 +47,219 @@
                 </div>
                 <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-8 px-4 my-12">
                   <div class="bg-gray-100 p-6 rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#007bff" class="w-12 mb-4 inline-block bg-white p-3 rounded-md" viewBox="0 0 32 32">
-                      <path d="M28.068 12h-.128a.934.934 0 0 1-.864-.6.924.924 0 0 1 .2-1.01l.091-.091a2.938 2.938 0 0 0 0-4.147l-1.511-1.51a2.935 2.935 0 0 0-4.146 0l-.091.091A.956.956 0 0 1 20 4.061v-.129A2.935 2.935 0 0 0 17.068 1h-2.136A2.935 2.935 0 0 0 12 3.932v.129a.956.956 0 0 1-1.614.668l-.086-.091a2.935 2.935 0 0 0-4.146 0l-1.516 1.51a2.938 2.938 0 0 0 0 4.147l.091.091a.935.935 0 0 1 .185 1.035.924.924 0 0 1-.854.579h-.128A2.935 2.935 0 0 0 1 14.932v2.136A2.935 2.935 0 0 0 3.932 20h.128a.934.934 0 0 1 .864.6.924.924 0 0 1-.2 1.01l-.091.091a2.938 2.938 0 0 0 0 4.147l1.51 1.509a2.934 2.934 0 0 0 4.147 0l.091-.091a.936.936 0 0 1 1.035-.185.922.922 0 0 1 .579.853v.129A2.935 2.935 0 0 0 14.932 31h2.136A2.935 2.935 0 0 0 20 28.068v-.129a.956.956 0 0 1 1.614-.668l.091.091a2.935 2.935 0 0 0 4.146 0l1.511-1.509a2.938 2.938 0 0 0 0-4.147l-.091-.091a.935.935 0 0 1-.185-1.035.924.924 0 0 1 .854-.58h.128A2.935 2.935 0 0 0 31 17.068v-2.136A2.935 2.935 0 0 0 28.068 12ZM29 17.068a.933.933 0 0 1-.932.932h-.128a2.956 2.956 0 0 0-2.083 5.028l.09.091a.934.934 0 0 1 0 1.319l-1.511 1.509a.932.932 0 0 1-1.318 0l-.09-.091A2.957 2.957 0 0 0 18 27.939v.129a.933.933 0 0 1-.932.932h-2.136a.933.933 0 0 1-.932-.932v-.129a2.951 2.951 0 0 0-5.028-2.082l-.091.091a.934.934 0 0 1-1.318 0l-1.51-1.509a.934.934 0 0 1 0-1.319l.091-.091A2.956 2.956 0 0 0 4.06 18h-.128A.933.933 0 0 1 3 17.068v-2.136A.933.933 0 0 1 3.932 14h.128a2.956 2.956 0 0 0 2.083-5.028l-.09-.091a.933.933 0 0 1 0-1.318l1.51-1.511a.932.932 0 0 1 1.318 0l.09.091A2.957 2.957 0 0 0 14 4.061v-.129A.933.933 0 0 1 14.932 3h2.136a.933.933 0 0 1 .932.932v.129a2.956 2.956 0 0 0 5.028 2.082l.091-.091a.932.932 0 0 1 1.318 0l1.51 1.511a.933.933 0 0 1 0 1.318l-.091.091A2.956 2.956 0 0 0 27.94 14h.128a.933.933 0 0 1 .932.932Z" data-original="#000000" />
-                      <path d="M16 9a7 7 0 1 0 7 7 7.008 7.008 0 0 0-7-7Zm0 12a5 5 0 1 1 5-5 5.006 5.006 0 0 1-5 5Z" data-original="#000000" />
-                    </svg>
-                    <h3 class="text-xl font-bold mb-2 text-[#333]">Customization</h3>
-                    <p class="text-sm text-[#333]">Tailor our product to suit your needs.</p>
-                    <a href="javascript:void(0);" class="text-blue-600 font-bold inline-block text-sm mt-2 hover:underline">Learn more</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="h-6 w-6  rounded-md" fill="#18c29c"><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-96 55.2C54 332.9 0 401.3 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7c0-81-54-149.4-128-171.1V362c27.6 7.1 48 32.2 48 62v40c0 8.8-7.2 16-16 16H336c-8.8 0-16-7.2-16-16s7.2-16 16-16V424c0-17.7-14.3-32-32-32s-32 14.3-32 32v24c8.8 0 16 7.2 16 16s-7.2 16-16 16H256c-8.8 0-16-7.2-16-16V424c0-29.8 20.4-54.9 48-62V304.9c-6-.6-12.1-.9-18.3-.9H178.3c-6.2 0-12.3 .3-18.3 .9v65.4c23.1 6.9 40 28.3 40 53.7c0 30.9-25.1 56-56 56s-56-25.1-56-56c0-25.4 16.9-46.8 40-53.7V311.2zM144 448a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/></svg>
+                    <h3 class="text-xl font-bold mb-2 text-[#333]">Consult a healthcare professional</h3>
+                    <p class="text-sm text-[#333]">Filter by availability, agreement and location</p>
                   </div>
                   <div class="bg-gray-100 p-6 rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#007bff" class="w-12 mb-4 inline-block bg-white p-3 rounded-md" viewBox="0 0 512.001 512.001">
-                      <path d="M271.029 0c-33.091 0-61 27.909-61 61s27.909 61 61 61 60-27.909 60-61-26.909-61-60-61zm66.592 122c-16.485 18.279-40.096 30-66.592 30-26.496 0-51.107-11.721-67.592-30-14.392 15.959-23.408 36.866-23.408 60v15c0 8.291 6.709 15 15 15h151c8.291 0 15-6.709 15-15v-15c0-23.134-9.016-44.041-23.408-60zM144.946 460.404 68.505 307.149c-7.381-14.799-25.345-20.834-40.162-13.493l-19.979 9.897c-7.439 3.689-10.466 12.73-6.753 20.156l90 180c3.701 7.423 12.704 10.377 20.083 6.738l19.722-9.771c14.875-7.368 20.938-25.417 13.53-40.272zM499.73 247.7c-12.301-9-29.401-7.2-39.6 3.9l-82 100.8c-5.7 6-16.5 9.6-22.2 9.6h-69.901c-8.401 0-15-6.599-15-15s6.599-15 15-15h60c16.5 0 30-13.5 30-30s-13.5-30-30-30h-78.6c-7.476 0-11.204-4.741-17.1-9.901-23.209-20.885-57.949-30.947-93.119-22.795-19.528 4.526-32.697 12.415-46.053 22.993l-.445-.361-21.696 19.094L174.28 452h171.749c28.2 0 55.201-13.5 72.001-36l87.999-126c9.9-13.201 7.2-32.399-6.299-42.3z" data-original="#000000" />
-                    </svg>
-                    <h3 class="text-xl font-bold mb-2 text-[#333]">Support</h3>
-                    <p class="text-sm text-[#333]">24/7 customer support for all your inquiries.</p>
-                    <a href="javascript:void(0);" class="text-blue-600 font-bold inline-block text-sm mt-2 hover:underline">Learn more</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="h-6 w-6   rounded-md" fill="#18c29c"><path d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H344V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192h80v56H48V192zm0 104h80v64H48V296zm128 0h96v64H176V296zm144 0h80v64H320V296zm80-48H320V192h80v56zm0 160v40c0 8.8-7.2 16-16 16H320V408h80zm-128 0v56H176V408h96zm-144 0v56H64c-8.8 0-16-7.2-16-16V408h80zM272 248H176V192h96v56z"/></svg>
+                    <h3 class="text-xl font-bold mb-2 text-[#333]">Make an appointment</h3>
+                    <p class="text-sm text-[#333]">Directly online or by calling the healthcare professional</p>
                   </div>
                   <div class="bg-gray-100 p-6 rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#007bff" class="w-12 mb-4 inline-block bg-white p-3 rounded-md" viewBox="0 0 24 24">
-                      <g fill-rule="evenodd" clip-rule="evenodd">
-                        <path d="M17.03 8.97a.75.75 0 0 1 0 1.06l-4.2 4.2a.75.75 0 0 1-1.154-.114l-1.093-1.639L8.03 15.03a.75.75 0 0 1-1.06-1.06l3.2-3.2a.75.75 0 0 1 1.154.114l1.093 1.639L15.97 8.97a.75.75 0 0 1 1.06 0z" data-original="#000000" />
-                        <path d="M13.75 9.5a.75.75 0 0 1 .75-.75h2a.75.75 0 0 1 .75.75v2a.75.75 0 0 1-1.5 0v-1.25H14.5a.75.75 0 0 1-.75-.75z" data-original="#000000" />
-                        <path d="M3.095 3.095C4.429 1.76 6.426 1.25 9 1.25h6c2.574 0 4.57.51 5.905 1.845C22.24 4.429 22.75 6.426 22.75 9v6c0 2.574-.51 4.57-1.845 5.905C19.571 22.24 17.574 22.75 15 22.75H9c-2.574 0-4.57-.51-5.905-1.845C1.76 19.571 1.25 17.574 1.25 15V9c0-2.574.51-4.57 1.845-5.905zm1.06 1.06C3.24 5.071 2.75 6.574 2.75 9v6c0 2.426.49 3.93 1.405 4.845.916.915 2.419 1.405 4.845 1.405h6c2.426 0 3.93-.49 4.845-1.405.915-.916 1.405-2.419 1.405-4.845V9c0-2.426-.49-3.93-1.405-4.845C18.929 3.24 17.426 2.75 15 2.75H9c-2.426 0-3.93.49-4.845 1.405z" data-original="#000000" />
-                      </g>
-                    </svg>
-                    <h3 class="text-xl font-bold mb-2 text-[#333]">Performance</h3>
-                    <p class="text-sm text-[#333]">Experience blazing-fast performance with our product.</p>
-                    <a href="javascript:void(0);" class="text-blue-600 font-bold inline-block text-sm mt-2 hover:underline">Learn more</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" class="h-6 w-6   rounded-md" fill="#18c29c"><path d="M48 0C21.5 0 0 21.5 0 48V256H144c8.8 0 16 7.2 16 16s-7.2 16-16 16H0v64H144c8.8 0 16 7.2 16 16s-7.2 16-16 16H0v80c0 26.5 21.5 48 48 48H265.9c-6.3-10.2-9.9-22.2-9.9-35.1c0-46.9 25.8-87.8 64-109.2V271.8 48c0-26.5-21.5-48-48-48H48zM152 64h16c8.8 0 16 7.2 16 16v24h24c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16H184v24c0 8.8-7.2 16-16 16H152c-8.8 0-16-7.2-16-16V152H112c-8.8 0-16-7.2-16-16V120c0-8.8 7.2-16 16-16h24V80c0-8.8 7.2-16 16-16zM512 272a80 80 0 1 0 -160 0 80 80 0 1 0 160 0zM288 477.1c0 19.3 15.6 34.9 34.9 34.9H541.1c19.3 0 34.9-15.6 34.9-34.9c0-51.4-41.7-93.1-93.1-93.1H381.1c-51.4 0-93.1 41.7-93.1 93.1z"/></svg>
+                    <h3 class="text-xl font-bold mb-2 text-[#333]">Your healthcare professional</h3>
+                    <p class="text-sm text-[#333]">A reminder SMS with all practical information is sent the day before your appointment</p>
                   </div>
                   <div class="bg-gray-100 p-6 rounded-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="#007bff" class="w-12 mb-4 inline-block bg-white p-3 rounded-md" viewBox="0 0 682.667 682.667">
-                      <defs>
-                        <clipPath id="a" clipPathUnits="userSpaceOnUse">
-                          <path d="M0 512h512V0H0Z" data-original="#000000" />
-                        </clipPath>
-                      </defs>
-                      <g fill="none" stroke="#007bff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="40" clip-path="url(#a)" transform="matrix(1.33 0 0 -1.33 0 682.667)">
-                        <path d="M256 492 60 410.623v-98.925C60 183.674 137.469 68.38 256 20c118.53 48.38 196 163.674 196 291.698v98.925z" data-original="#000000" />
-                        <path d="M178 271.894 233.894 216 334 316.105" data-original="#000000" />
-                      </g>
-                    </svg>
-                    <h3 class="text-xl font-bold mb-2 text-[#333]">Security</h3>
-                    <p class="text-sm text-[#333]">Your data is protected by the latest security measures.</p>
-                    <a href="javascript:void(0);" class="text-blue-600 font-bold inline-block text-sm mt-2 hover:underline">Learn more</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-6 w-6  rounded-md" fill="#18c29c"><path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0zm0 66.8V444.8C394 378 431.1 230.1 432 141.4L256 66.8l0 0z"/></svg>
+                    <h3 class="text-xl font-bold mb-2 text-[#333]">Your safety</h3>
+                    <p class="text-sm text-[#333]">Your data is protected thanks to our host approved by the Ministry of Health</p>
                   </div>
                 </div>
               </div>
         </div>
-    
+
+<h1 class="text-center font-bold text-2xl text-gray-700 mt-20"><U>OUR DIFFERENT SPECIALITIES</U></h1>
+        <div class="grid grid-cols-2 md:grid-cols-5  text-center font-semibold text-gray-800 justify-items-center m-16 mx-52 gap-y-12">
+          <div>
+					<div class=""><span><img  width="128" height="128" src="https://pratisoft.ma/wp-content/uploads/2023/03/icon2-1.png" alt="" ></span></a></div>
+						<h4>Cardiology</a></h4>
+        </div>
+        <div>
+					<div class="et_pb_main_blurb_image"><span class="et_pb_image_wrap et_pb_only_image_mode_wrap"><img loading="lazy" decoding="async" width="128" height="128" src="https://pratisoft.ma/wp-content/uploads/2023/03/icon3-1.png" alt="" class="et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-294 et-animated et_multi_view_swapped et_multi_view_image__loaded" data-et-multi-view="{&quot;schema&quot;:{&quot;attrs&quot;:{&quot;desktop&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon3-1.png&quot;,&quot;class&quot;:&quot;et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-294&quot;,&quot;alt&quot;:&quot;&quot;},&quot;hover&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon3-hover_.png&quot;}}},&quot;slug&quot;:&quot;et_pb_blurb&quot;}" srcset="" sizes=""></span></a></div>
+					<div class="et_pb_blurb_container">
+						<h4 class="et_pb_module_header">Dental</a></h4>	
+					</div>
+        </div>
+        <div>
+					<div class="et_pb_main_blurb_image"><span class="et_pb_image_wrap et_pb_only_image_mode_wrap"><img loading="lazy" decoding="async" width="128" height="128" src="https://pratisoft.ma/wp-content/uploads/2023/03/icon4-1.png" alt="" class="et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-296 et-animated et_multi_view_swapped et_multi_view_image__loaded" data-et-multi-view="{&quot;schema&quot;:{&quot;attrs&quot;:{&quot;desktop&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon4-1.png&quot;,&quot;class&quot;:&quot;et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-296&quot;,&quot;alt&quot;:&quot;&quot;},&quot;hover&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon4-hover.png&quot;}}},&quot;slug&quot;:&quot;et_pb_blurb&quot;}" srcset="" sizes=""></span></a></div>
+					<div class="et_pb_blurb_container">
+						<h4 class="et_pb_module_header">
+
+              Dermatologists</a></h4>
+					</div>
+        </div>
+        <div>
+					<div class="et_pb_main_blurb_image"><span class="et_pb_image_wrap et_pb_only_image_mode_wrap"><img loading="lazy" decoding="async" width="128" height="128" src="https://pratisoft.ma/wp-content/uploads/2023/03/icon-13.png" alt="" class="et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-286 et-animated et_multi_view_swapped et_multi_view_image__loaded" data-et-multi-view="{&quot;schema&quot;:{&quot;attrs&quot;:{&quot;desktop&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon-13.png&quot;,&quot;class&quot;:&quot;et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-286&quot;,&quot;alt&quot;:&quot;&quot;},&quot;hover&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon13-hover.png&quot;}}},&quot;slug&quot;:&quot;et_pb_blurb&quot;}" srcset="" sizes=""></span></a></div>
+					<div class="et_pb_blurb_container">
+						<h4 class="et_pb_module_header">Pediatrician
+
+            </a></h4>	
+					</div>
+        </div>
+        <div>
+					<div class="et_pb_main_blurb_image"><span class="et_pb_image_wrap et_pb_only_image_mode_wrap"><img loading="lazy" decoding="async" width="128" height="128" src="https://pratisoft.ma/wp-content/uploads/2023/03/icon6.png" alt="" class="et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-299 et-animated et_multi_view_swapped et_multi_view_image__loaded" data-et-multi-view="{&quot;schema&quot;:{&quot;attrs&quot;:{&quot;desktop&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon6.png&quot;,&quot;class&quot;:&quot;et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-299&quot;,&quot;alt&quot;:&quot;&quot;},&quot;hover&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon6-hover.png&quot;}}},&quot;slug&quot;:&quot;et_pb_blurb&quot;}" srcset="" sizes=""></span></a></div>
+					<div class="et_pb_blurb_container">
+						<h4 class="et_pb_module_header">Gastrology</a></h4>						
+					</div>
+        </div>
+        <div>
+					<div class="et_pb_main_blurb_image"><span class="et_pb_image_wrap et_pb_only_image_mode_wrap"><img loading="lazy" decoding="async" width="128" height="128" src="https://pratisoft.ma/wp-content/uploads/2023/03/icon7.png" alt="" class="et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-301 et-animated et_multi_view_swapped et_multi_view_image__loaded" data-et-multi-view="{&quot;schema&quot;:{&quot;attrs&quot;:{&quot;desktop&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon7.png&quot;,&quot;class&quot;:&quot;et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-301&quot;,&quot;alt&quot;:&quot;&quot;},&quot;hover&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon7-hover_.png&quot;}}},&quot;slug&quot;:&quot;et_pb_blurb&quot;}" srcset="" sizes=""></span></a></div>
+					<div class="et_pb_blurb_container">
+						<h4 class="et_pb_module_header">
+              Generalist</a></h4>						
+					</div>
+        </div>
+        <div>
+					<div class="et_pb_main_blurb_image"><span class="et_pb_image_wrap et_pb_only_image_mode_wrap"><img loading="lazy" decoding="async" width="128" height="128" src="https://pratisoft.ma/wp-content/uploads/2023/03/icon8.png" alt="" class="et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-303 et-animated" data-et-multi-view="{&quot;schema&quot;:{&quot;attrs&quot;:{&quot;desktop&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon8.png&quot;,&quot;class&quot;:&quot;et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-303&quot;,&quot;alt&quot;:&quot;&quot;},&quot;hover&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon8-hover.png&quot;}}},&quot;slug&quot;:&quot;et_pb_blurb&quot;}"></span></a></div>
+					<div class="et_pb_blurb_container">
+						<h4 class="et_pb_module_header">Gynecology</a></h4>					
+					</div>
+        </div>
+        <div>
+					<div class="et_pb_main_blurb_image"><span class="et_pb_image_wrap et_pb_only_image_mode_wrap"><img loading="lazy" decoding="async" width="128" height="128" src="https://pratisoft.ma/wp-content/uploads/2023/03/icon9.png" alt="" class="et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-305 et-animated et_multi_view_swapped et_multi_view_image__loaded" data-et-multi-view="{&quot;schema&quot;:{&quot;attrs&quot;:{&quot;desktop&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon9.png&quot;,&quot;class&quot;:&quot;et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-305&quot;,&quot;alt&quot;:&quot;&quot;},&quot;hover&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon9-hover.png&quot;}}},&quot;slug&quot;:&quot;et_pb_blurb&quot;}" srcset="" sizes=""></span></a></div>
+					<div class="et_pb_blurb_container">
+						<h4 class="et_pb_module_header">Kinesitherapeute</a></h4>
+					</div>
+        </div>
+        <div>
+					<div class="et_pb_main_blurb_image"><span class="et_pb_image_wrap et_pb_only_image_mode_wrap"><img loading="lazy" decoding="async" width="128" height="128" src="https://pratisoft.ma/wp-content/uploads/2023/03/icon11.png" alt="" class="et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-308 et-animated et_multi_view_swapped et_multi_view_image__loaded" data-et-multi-view="{&quot;schema&quot;:{&quot;attrs&quot;:{&quot;desktop&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon11.png&quot;,&quot;class&quot;:&quot;et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-308&quot;,&quot;alt&quot;:&quot;&quot;},&quot;hover&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon11-hover.png&quot;}}},&quot;slug&quot;:&quot;et_pb_blurb&quot;}" srcset="" sizes=""></span></a></div>
+					<div class="et_pb_blurb_container">
+						<h4 class="et_pb_module_header">Ophthalmologist</a></h4>
+					</div>
+        </div>
+        <div>
+					<div class="et_pb_main_blurb_image"><span class="et_pb_image_wrap et_pb_only_image_mode_wrap"><img loading="lazy" decoding="async" width="128" height="128" src="https://pratisoft.ma/wp-content/uploads/2023/03/icon-5.png" alt="" class="et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-284 et-animated et_multi_view_swapped et_multi_view_image__loaded" data-et-multi-view="{&quot;schema&quot;:{&quot;attrs&quot;:{&quot;desktop&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon-5.png&quot;,&quot;class&quot;:&quot;et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-284&quot;,&quot;alt&quot;:&quot;&quot;},&quot;hover&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon5-hover.png&quot;}}},&quot;slug&quot;:&quot;et_pb_blurb&quot;}" srcset="" sizes=""></span></a></div>
+					<div class="et_pb_blurb_container">
+						<h4 class="et_pb_module_header">Endocrinology
+            </a></h4>
+					</div>
+        </div>
+        <div>
+					<div class="et_pb_main_blurb_image"><span class="et_pb_image_wrap et_pb_only_image_mode_wrap"><img loading="lazy" decoding="async" width="128" height="128" src="https://pratisoft.ma/wp-content/uploads/2023/03/icon12.png" alt="" class="et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-310 et-animated et_multi_view_swapped et_multi_view_image__loaded" data-et-multi-view="{&quot;schema&quot;:{&quot;attrs&quot;:{&quot;desktop&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon12.png&quot;,&quot;class&quot;:&quot;et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-310&quot;,&quot;alt&quot;:&quot;&quot;},&quot;hover&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon12-hover.png&quot;}}},&quot;slug&quot;:&quot;et_pb_blurb&quot;}" srcset="" sizes=""></span></a></div>
+					<div class="et_pb_blurb_container">
+						<h4 class="et_pb_module_header">Orl</a></h4>	
+					</div>
+        </div>
+        <div>
+					<div class="et_pb_main_blurb_image"><span class="et_pb_image_wrap et_pb_only_image_mode_wrap"><img loading="lazy" decoding="async" width="128" height="128" src="https://pratisoft.ma/wp-content/uploads/2023/03/icon14.png" alt="" class="et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-313 et-animated et_multi_view_swapped et_multi_view_image__loaded" data-et-multi-view="{&quot;schema&quot;:{&quot;attrs&quot;:{&quot;desktop&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon14.png&quot;,&quot;class&quot;:&quot;et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-313&quot;,&quot;alt&quot;:&quot;&quot;},&quot;hover&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon14-hover_.png&quot;}}},&quot;slug&quot;:&quot;et_pb_blurb&quot;}" srcset="" sizes=""></span></a></div>
+					<div class="et_pb_blurb_container">
+						<h4 class="et_pb_module_header">Pneumology </a></h4>	
+					</div>
+        </div>
+        <div>
+					<div class="et_pb_main_blurb_image"><span class="et_pb_image_wrap et_pb_only_image_mode_wrap"><img loading="lazy" decoding="async" width="128" height="128" src="https://pratisoft.ma/wp-content/uploads/2023/03/icon1_.png" alt="" class="et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-290 et-animated et_multi_view_swapped et_multi_view_image__loaded" data-et-multi-view="{&quot;schema&quot;:{&quot;attrs&quot;:{&quot;desktop&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon1_.png&quot;,&quot;class&quot;:&quot;et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-290&quot;,&quot;alt&quot;:&quot;&quot;},&quot;hover&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon1-hover_.png&quot;}}},&quot;slug&quot;:&quot;et_pb_blurb&quot;}" srcset="" sizes=""></span></a></div>
+					<div class="et_pb_blurb_container">
+						<h4 class="et_pb_module_header">Psychologist</a></h4>			
+					</div>
+        </div>
+        <div>
+					<div class="et_pb_main_blurb_image"><span class="et_pb_image_wrap et_pb_only_image_mode_wrap"><img loading="lazy" decoding="async" width="128" height="128" src="https://pratisoft.ma/wp-content/uploads/2023/03/icon-16.png" alt="" class="et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-287 et-animated et_multi_view_swapped et_multi_view_image__loaded" data-et-multi-view="{&quot;schema&quot;:{&quot;attrs&quot;:{&quot;desktop&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon-16.png&quot;,&quot;class&quot;:&quot;et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-287&quot;,&quot;alt&quot;:&quot;&quot;},&quot;hover&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon16-hover_.png&quot;}}},&quot;slug&quot;:&quot;et_pb_blurb&quot;}" srcset="" sizes=""></span></a></div>
+					<div class="et_pb_blurb_container">
+						<h4 class="et_pb_module_header">Rhumataulogue
+
+            </a></h4>					
+					</div>
+        </div>
+        <div>
+					<div class="et_pb_main_blurb_image"><span class="et_pb_image_wrap et_pb_only_image_mode_wrap"><img loading="lazy" decoding="async" width="128" height="128" src="https://pratisoft.ma/wp-content/uploads/2023/03/icon-10.png" alt="" class="et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-285 et-animated et_multi_view_swapped et_multi_view_image__loaded" data-et-multi-view="{&quot;schema&quot;:{&quot;attrs&quot;:{&quot;desktop&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon-10.png&quot;,&quot;class&quot;:&quot;et-waypoint et_pb_animation_top et_pb_animation_top_tablet et_pb_animation_top_phone wp-image-285&quot;,&quot;alt&quot;:&quot;&quot;},&quot;hover&quot;:{&quot;src&quot;:&quot;https:\/\/pratisoft.ma\/wp-content\/uploads\/2023\/03\/icon10-hover.png&quot;}}},&quot;slug&quot;:&quot;et_pb_blurb&quot;}" srcset="" sizes=""></span></a></div>
+					<div class="et_pb_blurb_container">
+						<h4 class="et_pb_module_header">Neurologist</a></h4>			
+					</div>
+</div>
+</div>
+
+
+
+        <div class="bg-gray-100 p-8 font-[sans-serif]">
+          <div class="bg-white rounded-lg shadow">
+            <div class="p-6 border-b border-gray-300">
+              <h2 class="text-3xl font-extrabold text-[#218063]">Frequently Asked Questions</h2>
+              <p class="text-gray-600 mt-4 text-sm">Explore our comprehensive FAQ to find answers to common queries.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-6">
+              <div class="bg-indigo-50 p-6 rounded-lg border border-indigo-200">
+                <h3 class="text-lg font-semibold text-[#18c29c] mb-2">How can I create an account?</h3>
+                <p class="text-gray-600 text-sm">Creating an account is easy! Click on the "Sign Up" button and follow the simple steps to get started.</p>
+              </div>
+              <div class="bg-indigo-50 p-6 rounded-lg border border-indigo-200">
+                <h3 class="text-lg font-semibold text-[#18c29c] mb-2">Is there a mobile app available?</h3>
+                <p class="text-gray-600 text-sm">Yes, we offer a mobile app for both iOS and Android. Visit the App Store or Google Play to download it.</p>
+              </div>
+              <div class="bg-indigo-50 p-6 rounded-lg border border-indigo-200">
+                <h3 class="text-lg font-semibold text-[#18c29c] mb-2">How can I reset my password?</h3>
+                <p class="text-gray-600 text-sm">To reset your password, go to the login page and click on the "Forgot Password" link. Follow the instructions sent to your email.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <footer class="font-[sans-serif] bg-[#213343] py-8 px-10">
+          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 pb-8 border-b border-[#FFA726]">
+            <li>
+              <h3 class="text-[#FFA726] font-semibold text-5xl">3+</h3>
+              <p class="text-gray-300 text-sm mt-2">Years of Experience</p>
+            </li>
+            <li>
+              <h3 class="text-[#FFA726] font-semibold text-5xl">99%</h3>
+              <p class="text-gray-300 text-sm mt-2">Happy Customers</p>
+            </li>
+            <li>
+              <h3 class="text-[#FFA726] font-semibold text-5xl">150+</h3>
+              <p class="text-gray-300 text-sm mt-2">Consultations</p>
+            </li>
+            <li>
+              <h3 class="text-[#FFA726] font-semibold text-5xl">50+</h3>
+              <p class="text-gray-300 text-sm mt-2">Doctors</p>
+            </li>
+          </ul>
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8">
+            <div>
+              <img src="{{ asset('storage/images/' . 'logo.png') }}" alt="logo" class='w-60 mt-10 justify-center' />
+            </div>
+            <div>
+              <h4 class="text-[#FFA726] font-semibold text-lg mb-4">Services</h4>
+              <ul class="space-y-3">
+                <li>
+                  <a href="javascript:void(0)" class="hover:text-[#FFA726] text-gray-300 text-sm">Consult a healthcare professional</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="hover:text-[#FFA726] text-gray-300 text-sm">Make an appointment</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="hover:text-[#FFA726] text-gray-300 text-sm">Your healthcare professional</a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="hover:text-[#FFA726] text-gray-300 text-sm">Your safety</a>
+                </li>
+              </ul>
+            </div>
+            <div >
+              <h4 class="text-[#FFA726] font-semibold ml-10 text-lg mb-4">Specialities</h4>
+              <div class="gap-y-4 grid grid-cols-3 mr-20">
+              
+                  <p class="hover:text-[#FFA726] text-gray-300 text-sm">Generalist</p>
+                  <p class="hover:text-[#FFA726] text-gray-300 text-sm">Cardiology</p>
+                  <p class="hover:text-[#FFA726] text-gray-300 text-sm">Gynecology</p>
+                  <p class="hover:text-[#FFA726] text-gray-300 text-sm">Ophthalmologist</p>
+                  <p class="hover:text-[#FFA726] text-gray-300 text-sm ml-6">Dental</p>
+                  <p class="hover:text-[#FFA726] text-gray-300 text-sm">Endocrinology</p>
+                  <p class="hover:text-[#FFA726] text-gray-300 text-sm">Pneumology</p>
+                  <p class="hover:text-[#FFA726] text-gray-300 text-sm">Psychologist</p>
+                  <p class="hover:text-[#FFA726] text-gray-300 text-sm">Gastrology</p>
+                  <p class="hover:text-[#FFA726] text-gray-300 text-sm">Rhumataulogue</p>
+                  <p class="hover:text-[#FFA726] text-gray-300 text-sm ml-6">orl</p>
+                  <p class="hover:text-[#FFA726] text-gray-300 text-sm">Neurologist</p>
+
+              </div>
+            </div>
+            
+          </div>
+          <p class='text-gray-300 text-sm text-center mt-16'>© 2024<a href='' target='_blank'
+            class="hover:underline mx-1">MediConnect</a>All Rights Reserved.
+          </p>
+        </footer>
     </body>
 </html>
