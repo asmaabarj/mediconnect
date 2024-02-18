@@ -15,7 +15,7 @@
         <x-slot name="header" class=" ">
             <div class="flex justify-between">
                 <section class="w-[30vw]">
-                    @include('layouts/sideBarPat')
+                    @include('layouts/sideBarPatient')
         </x-slot>
         </section>
         <section class="w-[80vw] absolute right-0 mx-auto">

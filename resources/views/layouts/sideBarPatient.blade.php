@@ -4,7 +4,7 @@
 
         <ul class="space-y-3 mt-2">
             <li>
-                <a href="javascript:void(0)"
+                <a href="/dashboard"
                     class="text-gray-800 text-sm flex gap-4 items-center hover:bg-gray-100 rounded px-4 py-3 transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20px"
                         class="cursor-pointer fill-[#333] hover:fill-[#077bff]"
@@ -30,7 +30,7 @@
                 </a>
             </li>
             <li>
-                <a href="javascript:void(0)"
+                <a href="/notifPatient"
                     class="text-gray-800 text-sm flex items-center hover:bg-gray-100 rounded px-4 py-3 transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         class="w-[18px] h-[18px] mr-4" viewBox="0 0 371.263 371.263">
@@ -42,7 +42,7 @@
                 </a>
             </li>
             <li>
-                <a href="javascript:void(0)"
+                <a href="/certificat"
                     class="text-gray-800 text-sm flex items-center hover:bg-gray-100 rounded px-4 py-3 transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                         class="w-[18px] h-[18px] mr-4" viewBox="0 0 512 512">

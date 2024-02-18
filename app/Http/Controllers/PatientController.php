@@ -153,4 +153,8 @@ class PatientController extends Controller
             'hours' => $hours,
         ]);
     }
+    public function notification(){
+        return view('notifPatient');
+
+    }
 }

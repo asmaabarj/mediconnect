@@ -28,6 +28,13 @@ Route::get('/', function () {
 Route::get('/PaHistory', function () {
     return view('PaHistory');
 });
+Route::get('/notifPatient', function () {
+    return view('notifPatient');
+});
+Route::get('/certificat', function () {
+    return view('certificat');
+});
+
 
 
 Route::get('/dashboard', function () {
@@ -60,7 +67,9 @@ Route::get('/doctor', function () {
 Route::get('/notifDoctor', function () {
     return VIEW('doctor/notifDoctor');
 });
+
 Route::get('/notifDoctor', [DoctorController::class, 'ReservationsDoc']);
+Route::get('/notifPatient', [PatientController::class, 'notification']);
 
 // Route::get('', [DoctorController::class, 'DoctorDashboard'])->middleware(RedirectIfAuthenticated::class);
 // Route::get('/patient/dashboard', [PatientController::class, 'PatientDashboard'])->middleware(RedirectIfAuthenticated::class);
