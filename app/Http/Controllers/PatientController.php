@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\favori;
 use App\Models\Specialite;
+use App\Models\certificate;
+use App\Models\commentaire;
 use App\Models\reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -153,8 +155,52 @@ class PatientController extends Controller
             'hours' => $hours,
         ]);
     }
-    public function notification(){
-        return view('notifPatient');
+  
+    public function notification()
+{
+    $certificates = Certificate::select('certificates.*', 'reservations.date', 'patients.name as patient_name', 'patients.email as patient_email', 'patients.numTel as patient_phone', 'doctors.name as doctor_name')
+        ->join('reservations', 'certificates.id_reservation', '=', 'reservations.id')
+        ->join('users as patients', 'reservations.patient', '=', 'patients.id')
+        ->join('users as doctors', 'reservations.Medecin', '=', 'doctors.id')
+        ->where('reservations.patient', Auth::id()) 
+        ->get();
 
-    }
+    return view('notifPatient', ['certificates' => $certificates]);
+}
+
+public function downloadCertificate($certificateId)
+{
+    $certificate = Certificate::findOrFail($certificateId);
+
+
+    return response()->download($certificate->certificate_url);
+}
+// PatientController.php
+
+public function consultation()
+{
+    $certificates = Certificate::select('certificates.*', 'reservations.date', 'patients.name as patient_name', 'patients.email as patient_email', 'patients.numTel as patient_phone', 'doctors.name as doctor_name', 'doctors.email as doctor_email', 'doctors.numTel as doctor_phone', 'doctors.desc as doctor_description', 'doctors.photo as doctor_photo')
+        ->join('reservations', 'certificates.id_reservation', '=', 'reservations.id')
+        ->join('users as patients', 'reservations.patient', '=', 'patients.id')
+        ->join('users as doctors', 'reservations.Medecin', '=', 'doctors.id')
+        ->where('reservations.patient', Auth::id()) 
+        ->get();
+
+    return view('certificat', ['certificates' => $certificates]);
+}
+
+public function addComment(Request $request)
+{
+    $data = $request->validate([
+        'certificate_id' => 'required|exists:certificates,id',
+        'content' => 'required',
+    ]);
+
+    commentaire::create([
+        'id_certificate' => $data['certificate_id'],
+        'content' => $data['content'],
+    ]);
+
+    return redirect()->back()->with('success', 'Comment added successfully.');
+}
 }

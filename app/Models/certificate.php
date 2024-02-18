@@ -14,4 +14,10 @@ class Certificate extends Model
     {
         return $this->belongsTo(Reservation::class, 'id_reservation');
     }
+
+public function doctor()
+{
+    return $this->belongsTo(User::class, 'doctor_id');
+}
+
 }

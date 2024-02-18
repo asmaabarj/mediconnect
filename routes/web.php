@@ -77,6 +77,8 @@ Route::get('/notifDoctor', [DoctorController::class, 'ReservationsDoc']);
 Route::get('/notifPatient', [PatientController::class, 'notification']);
 Route::post('/certificat', [DoctorController::class, 'storeCertificate'])->name('storeCertificate');
 Route::get('/certificates', [DoctorController::class, 'showCertificates'])->name('certificates');
+Route::get('/certificat', [PatientController::class, 'consultation']);
+Route::post('/add-comment', [PatientController::class, 'addComment'])->name('add-comment');
 
 
 // Route::get('', [DoctorController::class, 'DoctorDashboard'])->middleware(RedirectIfAuthenticated::class);
@@ -86,4 +88,5 @@ Route::get('/dashboard', [PatientController::class, 'dashboard'])->name('dashboa
 Route::post('/reserve', [PatientController::class, 'reserve'])->name('reserve');
 Route::get('/PaHistory', [PatientController::class, 'favoriteDoctors'])->name('PaHistory');
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::get('/download-certificate/{certificateId}', [PatientController::class, 'downloadCertificate']);
 
