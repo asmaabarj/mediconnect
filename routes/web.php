@@ -37,6 +37,7 @@ Route::get('/certificat', function () {
 
 
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -67,6 +68,10 @@ Route::get('/doctor', function () {
 Route::get('/notifDoctor', function () {
     return VIEW('doctor/notifDoctor');
 });
+Route::get('/certificates', function () {
+    return view('doctor/certificates');
+});
+
 
 Route::get('/notifDoctor', [DoctorController::class, 'ReservationsDoc']);
 Route::get('/notifPatient', [PatientController::class, 'notification']);
