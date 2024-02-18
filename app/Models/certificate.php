@@ -10,4 +10,8 @@ class Certificate extends Model
     protected $fillable = ['id_reservation', 'certifDays'];
 
     use HasFactory;
+    public function reservation()
+    {
+        return $this->belongsTo(Reservation::class, 'id_reservation');
+    }
 }

@@ -76,6 +76,7 @@ Route::get('/certificates', function () {
 Route::get('/notifDoctor', [DoctorController::class, 'ReservationsDoc']);
 Route::get('/notifPatient', [PatientController::class, 'notification']);
 Route::post('/certificat', [DoctorController::class, 'storeCertificate'])->name('storeCertificate');
+Route::get('/certificates', [DoctorController::class, 'showCertificates'])->name('certificates');
 
 
 // Route::get('', [DoctorController::class, 'DoctorDashboard'])->middleware(RedirectIfAuthenticated::class);

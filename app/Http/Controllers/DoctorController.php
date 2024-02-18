@@ -37,4 +37,15 @@ class DoctorController extends Controller
 
     return redirect()->back();
 }
+public function showCertificates()
+{
+    $certificates = Certificate::select('certificates.*', 'reservations.date', 'reservations.created_at', 'patients.name as patient_name', 'patients.email as patient_email', 'patients.numTel as patient_phone')
+        ->join('reservations', 'certificates.id_reservation', '=', 'reservations.id')
+        ->join('users as patients', 'reservations.patient', '=', 'patients.id')
+        ->get();
+
+    return view('doctor.certificates', ['certificates' => $certificates]);
+}
+
+
 }
