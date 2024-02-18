@@ -143,7 +143,7 @@
                                             @endphp
 
                                             <form action="/reservation" method="post"
-                                                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                                                class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">
                                                 @csrf
                                                 <input type="hidden" name="date" value="{{ $hour['label'] }}">
                                                 <input type="hidden" name="Medecin" value="{{ $doctor->id }}">
@@ -189,6 +189,6 @@
             }
         }
     </script>
-    
+
 </body>
 </html>

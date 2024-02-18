@@ -98,44 +98,50 @@
                                     </svg> </button>
                             </form>
                         @endif
-                        <button type="button"
+                        <button type="button" onclick="toggleModal('reservationModal{{ $favoriteDoctor->doctor->id }}')"
                             class="px-4 py-2 mt-6 rounded  text-[#218063] border-[#218063] text-base font-medium border-[1px] border-solid  outline-none reserveButton">
                             Reserve
                         </button>
-                        <div id="reservationModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+                        <div id="reservationModal{{ $favoriteDoctor->doctor->id }}"
+                            class="fixed inset-0 z-50 flex items-center justify-center hidden">
                             <div class="absolute inset-0 bg-black opacity-50"></div>
                             <div class="bg-white p-8 rounded-lg z-10">
                                 <h2 class="text-lg font-bold mb-4">Select a Time Slot</h2>
                                 <div class="grid grid-cols-3 gap-4">
-                                    @foreach ($hours as $hour)
-                                    @php
-                                        $startTime = Carbon\Carbon::parse($hour['start']);
-                                        $startHour = $startTime->hour;
-                                        $startMinute = $startTime->minute;
-                                    @endphp
-                                
-                                    <form action="/reservation" method="post"
-                                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-                                        @csrf
-                                        <input type="hidden" name="date" value="{{ $hour['label'] }}">
-                                        <input type="hidden" name="Medecin" value="{{ $favoriteDoctor->doctor->id }}">
-                                        <button type="submit"  onclick="checkTime({{ $startHour }}, {{ $startMinute }})">
-                                            {{ $hour['label'] }}
-                                        </button>
-                                    </form>
-                                @endforeach
 
+                                    @foreach ($hours as $hour)
+                                        @php
+                                            $startTime = Carbon\Carbon::parse($hour['start']);
+                                            $startHour = $startTime->hour;
+                                            $startMinute = $startTime->minute;
+                                        @endphp
+
+                                        <form action="/reservation" method="post"
+                                            class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded">
+                                            @csrf
+                                            <input type="hidden" name="date" value="{{ $hour['label'] }}">
+                                            <input type="hidden" name="Medecin" value="{{ $favoriteDoctor->doctor->id }}">
+                                            <button type="submit"
+                                                onclick="checkTime({{ $startHour }}, {{ $startMinute }})">
+                                                {{ $hour['label'] }}
+                                            </button>
+                                        </form>
+                                    @endforeach
 
                                 </div>
                                 <div class="mt-4 flex justify-end">
-                                    <button id="closeModal" class="text-gray-500 hover:text-gray-700">Close</button>
+                                    <button id="closeModal{{ $favoriteDoctor->doctor->id }}"
+                                        onclick="toggleModal('reservationModal{{ $favoriteDoctor->doctor->id }}')"
+                                        class="text-gray-500 hover:text-gray-700">Close</button>
                                 </div>
                             </div>
+
                         </div>
 
                     </div>
                 </div>
             @endforeach
+
         @else
             <div class="w-screen text-center">
                 <p>You Have No Favorit Doctor</p>
@@ -147,34 +153,21 @@
 </html>
 
 
+
+
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const reservationModal = document.getElementById('reservationModal');
-        const closeModal = document.getElementById('closeModal');
+    function toggleModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.classList.toggle('hidden');
+    }
+    function checkTime(startHour, startMinute) {
+        var now = new Date();
+        var currentHour = now.getHours();
+        var currentMinute = now.getMinutes();
 
-        document.querySelectorAll('.reserveButton').forEach(item => {
-            item.addEventListener('click', event => {
-                reservationModal.classList.remove('hidden');
-            });
-        });
-
-        closeModal.addEventListener('click', function() {
-            reservationModal.classList.add('hidden');
-        });
-    });
-
-
-    document.querySelectorAll('.reserveButton').forEach(button => {
-        button.addEventListener('click', () => {
-            const doctorId = button.closest('.bg-white').querySelector('input[name="Medecin"]').value;
-            document.querySelectorAll('#reservationModal form').forEach(form => {
-                form.querySelector('input[name="Medecin"]').value = doctorId;
-            });
-            document.getElementById('reservationModal').classList.remove('hidden');
-        });
-    });
-
-    document.getElementById('closeModal').addEventListener('click', () => {
-        document.getElementById('reservationModal').classList.add('hidden');
-    });
+        if (currentHour > startHour || (currentHour === startHour && currentMinute >= startMinute)) {
+            alert('This time slot has already passed. Please select a different slot.');
+            event.preventDefault();
+        }
+    }
 </script>
