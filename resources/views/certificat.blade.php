@@ -34,6 +34,18 @@
                     </div>
                 </div>
                 <p class="text-sm text-gray-700 mt-4">{{$certificate->doctor_description}}</p>
+                @if(isset($comments[$certificate->id]))
+                <div class="mt-4">
+                    <h3 class="text-lg font-semibold">Comments:</h3>
+                    <div class="bg-gray-200 rounded-lg p-[5px] mt-2">
+                        @foreach($comments[$certificate->id] as $comment)
+                            <div class="bg-white rounded-lg shadow-md p-3 mb-2">
+                                <p class="text-sm text-gray-700">{{$comment->content}}</p>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+        @endif
                 <form method="post" action="{{ route('add-comment') }}">
                     @csrf
                     <input type="hidden" name="certificate_id" value="{{ $certificate->id }}">

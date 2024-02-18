@@ -183,11 +183,18 @@ public function consultation()
         ->join('reservations', 'certificates.id_reservation', '=', 'reservations.id')
         ->join('users as patients', 'reservations.patient', '=', 'patients.id')
         ->join('users as doctors', 'reservations.Medecin', '=', 'doctors.id')
-        ->where('reservations.patient', Auth::id()) 
+        ->where('reservations.patient', Auth::id())
         ->get();
 
-    return view('certificat', ['certificates' => $certificates]);
+    $comments = [];
+    foreach ($certificates as $certificate) {
+        $comments[$certificate->id] = Commentaire::where('id_certificate', $certificate->id)->get();
+    }
+
+    return view('certificat', ['certificates' => $certificates, 'comments' => $comments]);
 }
+
+
 
 public function addComment(Request $request)
 {
