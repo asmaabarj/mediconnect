@@ -26,26 +26,21 @@
             @foreach ($certificates as $certificate)
             <div class="w-full max-w-sm rounded p-4 bg-gray-50 shadow-[0_6px_24px_-12px_rgba(0,0,0,0.2)] mx-auto">
                 <div class="flex flex-wrap items-center cursor-pointer w-full bg-gray-100 p-2 rounded">
-                    <img src="{{ asset('storage/images/' . $certificate->doctor_photo) }}" class="w-14 h-14 rounded-full" />
                     <div class="ml-4 flex-1">
-                        <p class="text-base text-gray-800 font-semibold">Dr. {{$certificate->doctor_name}}</p>
-                        <p class="text-xs text-gray-700">Email: {{$certificate->doctor_email}}</p>
-                        <p class="text-xs text-gray-700">Phone: {{$certificate->doctor_phone}}</p>
                     </div>
                 </div>
-                <p class="text-sm text-gray-700 mt-4">{{$certificate->doctor_description}}</p>
-                @if(isset($comments[$certificate->id]))
-                <div class="mt-4">
-                    <h3 class="text-lg font-semibold">Comments:</h3>
-                    <div class="bg-gray-200 rounded-lg p-[5px] mt-2">
-                        @foreach($comments[$certificate->id] as $comment)
-                            <div class="bg-white rounded-lg shadow-md p-3 mb-2">
-                                <p class="text-sm text-gray-700">{{$comment->content}}</p>
-                            </div>
-                        @endforeach
+                <p class="text-sm text-gray-700 mt-4">How was your experience with Dr. {{$certificate->doctor_name}}?</p>
+                <form method="post" action="{{ route('rate-doctor') }}">
+                    @csrf
+                    <input type="hidden" name="certificate_id" value="{{ $certificate->id }}">
+                    <div class="flex mt-2">
+                        <p class="text-gray-600 font-bold">Rating : </p>
+                        @for ($i = 1; $i <= 5; $i++)
+                            <button type="submit" name="rating" value="{{ $i }}" class="ml-5  px-[8px] bg-gray-300 border-[1px] border-black hover:bg-yellow-400 rounded">{{ $i }} </button>
+                        @endfor
                     </div>
-                </div>
-        @endif
+                </form>
+                
                 <form method="post" action="{{ route('add-comment') }}">
                     @csrf
                     <input type="hidden" name="certificate_id" value="{{ $certificate->id }}">

@@ -19,7 +19,7 @@ class MedicamentController extends Controller
         Medicament::create([
             'name' => $data['MedicamentName'],
             'specialite_id' => $data['specialite_id'],
-            'statut' => '1', 
+            'statut' => '1',
         ]);
 
         return redirect('/admin');
@@ -28,13 +28,18 @@ class MedicamentController extends Controller
     public function listMedicamentsAndSpecialities(Request $request)
     {
         $specialityId = $request->input('specialite_id');
-    
+
         if ($specialityId !== null) {
-            $editspecialite = Specialite::findOrFail($specialityId); 
+            $editspecialite = Specialite::where('id', $specialityId)->first();
         } else {
             $editspecialite = null;
         }
-    
+        $medicamentId = $request->input('medicament_id');
+        if ($medicamentId !== null) {
+            $editmedicament = Medicament::where('id', $medicamentId)->first();
+        } else {
+            $editmedicament = null;
+        }
         $medicaments = Medicament::with('specialite')->where('statut', '1')->get();
         $specialities = Specialite::where('statut', '1')->get();
         $specialiteCount = $specialities->count();
@@ -42,27 +47,90 @@ class MedicamentController extends Controller
         $doctorCount = User::where('role', 'doctor')->count();
         $patientCount = User::where('role', 'patient')->count();
 
-    
+
         return view('admin.admin', [
             'medicaments' => $medicaments,
             'specialities' => $specialities,
             'specialiteCount' => $specialiteCount,
-            'MedicamentCount' => $MedicamentCount, 
+            'MedicamentCount' => $MedicamentCount,
             'editspecialite' => $editspecialite,
-            'doctorCount'=> $doctorCount,
-            'patientCount'=> $patientCount,
+            'editmedicament' => $editmedicament,
+            'doctorCount' => $doctorCount,
+            'patientCount' => $patientCount,
         ]);
     }
-    
-    
+
+
 
     public function deleteMedicament(Request $request)
     {
         $medicamentId = $request->medicament_id;
         $medicament = Medicament::findOrFail($medicamentId);
-        $medicament->update(['statut' => '0']);  
+        $medicament->update(['statut' => '0']);
         return redirect('/admin');
     }
+    public function UpdateSpecialities(Request $request)
+    {
+        $specialiteId = $request->input('specialite_id');
 
+        if ($specialiteId !== null) {
+            $specialite = Specialite::find($specialiteId);
+            $specialite->name = $request->input('name');
+            $specialite->save();
+        }
+
+       
+        return redirect('/admin');
+    }
+    public function UpdateMedicaments(Request $request)
+    {
+        $medicamenId = $request->input('medicament_id');
+
+        if ($medicamenId !== null) {
+            $medicamen = Medicament::find($medicamenId);
+            $medicamen->name = $request->input('MedicamentName');
+            $medicamen->save();
+        }
+
+       
+        return redirect('/admin');
+    }
+   
     
+    public function listMedicamentsAndSpecialitie(Request $request)
+    {
+        $specialityId = $request->input('specialite_id');
+
+        if ($specialityId !== null) {
+            $editspecialite = Specialite::where('id', $specialityId)->first();
+        } else {
+            $editspecialite = null;
+        }
+        $medicamentId = $request->input('medicament_id');
+        if ($medicamentId !== null) {
+            $editmedicament = Medicament::where('id', $medicamentId)->first();
+        } else {
+            $editmedicament = null;
+        }
+        $medicaments = Medicament::with('specialite')->where('statut', '1')->get();
+        $specialities = Specialite::where('statut', '1')->get();
+        $specialiteCount = $specialities->count();
+        $MedicamentCount = $medicaments->count();
+        $doctorCount = User::where('role', 'doctor')->count();
+        $patientCount = User::where('role', 'patient')->count();
+
+
+        return view('doctor.DoctorPage', [
+            'medicaments' => $medicaments,
+            'specialities' => $specialities,
+            'specialiteCount' => $specialiteCount,
+            'MedicamentCount' => $MedicamentCount,
+            'editspecialite' => $editspecialite,
+            'editmedicament' => $editmedicament,
+            'doctorCount' => $doctorCount,
+            'patientCount' => $patientCount,
+        ]);
+    }
+
 }
+

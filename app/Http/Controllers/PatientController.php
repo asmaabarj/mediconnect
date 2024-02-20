@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\favori;
+use App\Models\Rating;
 use App\Models\Specialite;
 use App\Models\certificate;
 use App\Models\commentaire;
@@ -24,9 +25,21 @@ class PatientController extends Controller
         } else {
             $filtreddoctors = User::where('role', 'Doctor')->get();
         }
-        $favorites = favori::where('favori', '1')->where('patient', Auth::id());
-        $favorites = favori::where('favori', '1')->where('patient', Auth::id());
+
+        $averageRatings = [];
+
+        foreach ($filtreddoctors as $doctor) {
+            $certificateIds = Certificate::whereHas('reservation', function ($query) use ($doctor) {
+                $query->where('Medecin', $doctor->id);
+            })->get(['id'])->toArray();
+
+            $averageRatings[$doctor->id] = Rating::whereIn('id_certificate', $certificateIds)->avg('note')-1;
+            
+        }
+
+        $favorites = Favori::where('favori', '1')->where('patient', Auth::id())->get();
         $doctors = User::where('role', 'Doctor')->get();
+
         $hours = [
             ['label' => '8h-9h', 'start' => '08:00', 'end' => '09:00'],
             ['label' => '9h-10h', 'start' => '09:00', 'end' => '10:00'],
@@ -44,16 +57,30 @@ class PatientController extends Controller
                 'statut' => '0'
             ]);
 
+        $commentsByDoctor = [];
+
+        foreach ($filtreddoctors as $doctor) {
+            $commentsByDoctor[$doctor->id]  = Commentaire::select('commentaires.content')
+                ->join('certificates', 'commentaires.id_certificate', '=', 'certificates.id')
+                ->join('reservations', 'certificates.id_reservation', '=', 'reservations.id')
+                ->where('reservations.Medecin', $doctor->id)
+                ->get();
+        }
 
         return view('dashboard', [
             'specialities' => $specialities,
             'doctors' => $doctors,
             'filtreddoctors' => $filtreddoctors,
             'hours' => $hours,
-
-            'favorites' => $favorites
+            'favorites' => $favorites,
+            'commentsByDoctor' => $commentsByDoctor,
+            'averageRatings' => $averageRatings,
         ]);
     }
+
+    
+
+
     public function favorit(Request $request)
     {
         $data = $request->validate([
@@ -155,35 +182,41 @@ class PatientController extends Controller
             'hours' => $hours,
         ]);
     }
-  
+
     public function notification()
+    {
+        $certificates = Certificate::select('certificates.*', 'reservations.date', 'patients.name as patient_name', 'patients.email as patient_email', 'patients.numTel as patient_phone', 'doctors.name as doctor_name' , 'reservations.Medecin as DocId')
+            ->join('reservations', 'certificates.id_reservation', '=', 'reservations.id')
+            ->join('users as patients', 'reservations.patient', '=', 'patients.id')
+            ->join('users as doctors', 'reservations.Medecin', '=', 'doctors.id')
+            ->where('reservations.patient', Auth::id())
+            ->get();
+
+        return view('notifPatient', ['certificates' => $certificates]);
+    }
+
+    public function downloadCertificate($certificateId)
+    {
+        $certificate = Certificate::findOrFail($certificateId);
+
+
+        return response()->download($certificate->certificate_url);
+    }
+    // PatientController.php
+
+   public function consultation()
 {
-    $certificates = Certificate::select('certificates.*', 'reservations.date', 'patients.name as patient_name', 'patients.email as patient_email', 'patients.numTel as patient_phone', 'doctors.name as doctor_name')
+    $doctorIds = Certificate::select('reservations.Medecin')
         ->join('reservations', 'certificates.id_reservation', '=', 'reservations.id')
-        ->join('users as patients', 'reservations.patient', '=', 'patients.id')
-        ->join('users as doctors', 'reservations.Medecin', '=', 'doctors.id')
-        ->where('reservations.patient', Auth::id()) 
-        ->get();
+        ->where('reservations.patient', Auth::id())
+        ->distinct()
+        ->pluck('Medecin');
 
-    return view('notifPatient', ['certificates' => $certificates]);
-}
-
-public function downloadCertificate($certificateId)
-{
-    $certificate = Certificate::findOrFail($certificateId);
-
-
-    return response()->download($certificate->certificate_url);
-}
-// PatientController.php
-
-public function consultation()
-{
     $certificates = Certificate::select('certificates.*', 'reservations.date', 'patients.name as patient_name', 'patients.email as patient_email', 'patients.numTel as patient_phone', 'doctors.name as doctor_name', 'doctors.email as doctor_email', 'doctors.numTel as doctor_phone', 'doctors.desc as doctor_description', 'doctors.photo as doctor_photo')
         ->join('reservations', 'certificates.id_reservation', '=', 'reservations.id')
         ->join('users as patients', 'reservations.patient', '=', 'patients.id')
         ->join('users as doctors', 'reservations.Medecin', '=', 'doctors.id')
-        ->where('reservations.patient', Auth::id())
+        ->whereIn('reservations.Medecin', $doctorIds)
         ->get();
 
     $comments = [];
@@ -196,18 +229,46 @@ public function consultation()
 
 
 
-public function addComment(Request $request)
+
+
+    public function addComment(Request $request)
+    {
+        $data = $request->validate([
+            'certificate_id' => 'required|exists:certificates,id',
+            'content' => 'required',
+        ]);
+
+        commentaire::create([
+            'id_certificate' => $data['certificate_id'],
+            'content' => $data['content'],
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function rateDoctor(Request $request)
 {
     $data = $request->validate([
-        'certificate_id' => 'required|exists:certificates,id',
-        'content' => 'required',
+        'certificate_id' => 'required',
+        'rating' => 'required|in:1,2,3,4,5',
     ]);
 
-    commentaire::create([
-        'id_certificate' => $data['certificate_id'],
-        'content' => $data['content'],
-    ]);
+    $existingRating = Rating::where('id_certificate', $data['certificate_id'])->first();
 
-    return redirect()->back()->with('success', 'Comment added successfully.');
+    if ($existingRating) {
+        Rating::where('id_certificate', $data['certificate_id'])->update(['note' => $data['rating']]);
+    } else {
+        Rating::create([
+            'id_certificate' => $data['certificate_id'],
+            'note' => $data['rating'],
+        ]);
+    }
+
+    return redirect()->back()->with('success', 'Doctor rated successfully!');
 }
+
+
+
+    
+
 }

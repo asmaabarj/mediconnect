@@ -18,6 +18,31 @@
 <body class="text-gray-800 font-inter">
     @include('layouts/sideBarDoc')
 
+    @foreach ($medicaments as $medicament)
+
+    <div>
     
+        <p>{{ $medicament->name }}</p>
+</div>
+@endforeach
+<form action="{{ route('medicament.update') }}" method="post">
+    @csrf
+    <input type="hidden" name="medicament_id" value="{{ $medicament->id }}">
+    <input type="text" name="name" value="{{ $medicament->name }}">
+    <button type="submit">Update</button>
+</form>
+
+<form action="{{ route('medicament.delete') }}" method="post">
+    @csrf
+    <input type="hidden" name="medicament_id" value="{{ $medicament->id }}">
+    <button type="submit">Delete</button>
+</form>
+
+<form action="{{ route('medicament.add') }}" method="post">
+    @csrf
+    <input type="text" name="MedicamentName" placeholder="Medicament Name">
+    <button type="submit">Add</button>
+</form>
+
 </body>
 </x-app-layout>

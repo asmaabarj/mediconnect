@@ -60,11 +60,6 @@
                     <span>Notifications</span>
                 </a>
             </li>
-            <button type="button"
-                class="ml-2  px-4 absolute bottom-60 py-2.5 rounded text-white text-sm  font-semibold border-none outline-none bg-red-600 hover:bg-red-700 active:bg-red-600">
-                <span class="">emergency appointment</span>
-
-            </button>
-
+            
         </ul>
     </nav>

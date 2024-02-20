@@ -8,6 +8,7 @@ use App\Http\Controllers\SpecialityController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,6 +58,9 @@ Route::post('/add-medicament', [MedicamentController::class, 'addMedicament']);
 Route::get('/admin', [MedicamentController::class, 'listMedicamentsAndSpecialities']);
 Route::post('/delete-medicament', [MedicamentController::class, 'deleteMedicament'])->name('deleteMedicament');
 Route::post('/edite-speciality', [MedicamentController::class, 'listMedicamentsAndSpecialities'])->name('editeSpeciality');
+Route::post('/edite-Medicament', [MedicamentController::class, 'listMedicamentsAndSpecialities'])->name('editeMedicament');
+Route::post('/apahUpdate', [MedicamentController::class, 'UpdateSpecialities']);
+Route::post('/medcamentUpdate', [MedicamentController::class, 'UpdateMedicaments']);
 Route::post('/favorit', [PatientController::class, 'favorit']);
 Route::post('/reservation', [PatientController::class, 'reservation']);
 
@@ -79,6 +83,8 @@ Route::post('/certificat', [DoctorController::class, 'storeCertificate'])->name(
 Route::get('/certificates', [DoctorController::class, 'showCertificates'])->name('certificates');
 Route::get('/certificat', [PatientController::class, 'consultation']);
 Route::post('/add-comment', [PatientController::class, 'addComment'])->name('add-comment');
+Route::get('/doctor-comments/{doctorId}', [PatientController::class, 'doctorComments'])->name('doctor-comments');
+Route::post('/rate-doctor', [PatientController::class, 'rateDoctor'])->name('rate-doctor');
 
 
 // Route::get('', [DoctorController::class, 'DoctorDashboard'])->middleware(RedirectIfAuthenticated::class);
@@ -90,3 +96,7 @@ Route::get('/PaHistory', [PatientController::class, 'favoriteDoctors'])->name('P
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 Route::get('/download-certificate/{certificateId}', [PatientController::class, 'downloadCertificate']);
 
+Route::get('/doctor/doctorPage', [MedicamentController::class, 'doctorPage'])->name('doctor.page');
+Route::post('/add-medicament', [MedicamentController::class, 'addMedicament'])->name('medicament.add');
+Route::post('/update-medicament', [MedicamentController::class, 'updateMedicament'])->name('medicament.update');
+Route::post('/delete-medicament', [MedicamentController::class, 'deleteMedicament'])->name('medicament.delete');
