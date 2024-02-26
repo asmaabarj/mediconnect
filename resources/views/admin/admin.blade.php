@@ -371,7 +371,7 @@
                                                     </button>
                                                 </form>
 
-                                                <form method="post" action="{{ route('deleteMedicament') }}">
+                                                <form method="post" action="/delete-medicament">
                                                     @csrf
                                                     <input type="hidden" name="medicament_id"
                                                         value="{{ $medicament->id }}">

@@ -22,8 +22,13 @@ class MedicamentController extends Controller
             'statut' => '1',
         ]);
 
-        return redirect('/admin');
-    }
+        if (auth()->user()->role === 'Admin'){
+            return redirect('/admin');
+        }
+        if(auth()->user()->role === 'Doctor'){
+            return redirect('/doctor');
+    
+        }    }
 
     public function listMedicamentsAndSpecialities(Request $request)
     {
@@ -48,16 +53,28 @@ class MedicamentController extends Controller
         $patientCount = User::where('role', 'patient')->count();
 
 
-        return view('admin.admin', [
-            'medicaments' => $medicaments,
-            'specialities' => $specialities,
-            'specialiteCount' => $specialiteCount,
-            'MedicamentCount' => $MedicamentCount,
-            'editspecialite' => $editspecialite,
-            'editmedicament' => $editmedicament,
-            'doctorCount' => $doctorCount,
-            'patientCount' => $patientCount,
-        ]);
+        if (auth()->user()->role === 'Doctor') {
+            return view('doctor.DoctorPage', [
+                'medicaments' => $medicaments,
+                'specialities' => $specialities,
+                'editmedicament' => $editmedicament,
+            ]);
+        }
+        if (auth()->user()->role === 'Admin') {
+            return view('admin.admin', [
+                'medicaments' => $medicaments,
+                'specialities' => $specialities,
+                'specialiteCount' => $specialiteCount,
+                'MedicamentCount' => $MedicamentCount,
+                'editspecialite' => $editspecialite,
+                'editmedicament' => $editmedicament,
+                'doctorCount' => $doctorCount,
+                'patientCount' => $patientCount,
+            ]);
+        }
+      
+        
+        
     }
 
 
@@ -67,8 +84,11 @@ class MedicamentController extends Controller
         $medicamentId = $request->medicament_id;
         $medicament = Medicament::findOrFail($medicamentId);
         $medicament->update(['statut' => '0']);
-        return redirect('/admin');
-    }
+       
+            return redirect('/admin');
+       
+    
+        }    
     public function UpdateSpecialities(Request $request)
     {
         $specialiteId = $request->input('specialite_id');
@@ -92,45 +112,13 @@ class MedicamentController extends Controller
             $medicamen->save();
         }
 
-       
         return redirect('/admin');
+
+
+    }
     }
    
     
-    public function listMedicamentsAndSpecialitie(Request $request)
-    {
-        $specialityId = $request->input('specialite_id');
+    
 
-        if ($specialityId !== null) {
-            $editspecialite = Specialite::where('id', $specialityId)->first();
-        } else {
-            $editspecialite = null;
-        }
-        $medicamentId = $request->input('medicament_id');
-        if ($medicamentId !== null) {
-            $editmedicament = Medicament::where('id', $medicamentId)->first();
-        } else {
-            $editmedicament = null;
-        }
-        $medicaments = Medicament::with('specialite')->where('statut', '1')->get();
-        $specialities = Specialite::where('statut', '1')->get();
-        $specialiteCount = $specialities->count();
-        $MedicamentCount = $medicaments->count();
-        $doctorCount = User::where('role', 'doctor')->count();
-        $patientCount = User::where('role', 'patient')->count();
-
-
-        return view('doctor.DoctorPage', [
-            'medicaments' => $medicaments,
-            'specialities' => $specialities,
-            'specialiteCount' => $specialiteCount,
-            'MedicamentCount' => $MedicamentCount,
-            'editspecialite' => $editspecialite,
-            'editmedicament' => $editmedicament,
-            'doctorCount' => $doctorCount,
-            'patientCount' => $patientCount,
-        ]);
-    }
-
-}
 

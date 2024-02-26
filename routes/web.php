@@ -66,9 +66,7 @@ Route::post('/reservation', [PatientController::class, 'reservation']);
 
 require __DIR__ . '/auth.php';
 
-Route::get('/doctor', function () {
-    return VIEW('doctor/DoctorPage');
-});
+
 Route::get('/notifDoctor', function () {
     return VIEW('doctor/notifDoctor');
 });
@@ -76,7 +74,7 @@ Route::get('/certificates', function () {
     return view('doctor/certificates');
 });
 
-
+Route::get('/doctor', [DoctorController::class, 'listMedicamentsAndSpecialitiesDoctor']);
 Route::get('/notifDoctor', [DoctorController::class, 'ReservationsDoc']);
 Route::get('/notifPatient', [PatientController::class, 'notification']);
 Route::post('/certificat', [DoctorController::class, 'storeCertificate'])->name('storeCertificate');
@@ -96,7 +94,6 @@ Route::get('/PaHistory', [PatientController::class, 'favoriteDoctors'])->name('P
 Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 Route::get('/download-certificate/{certificateId}', [PatientController::class, 'downloadCertificate']);
 
-Route::get('/doctor/doctorPage', [MedicamentController::class, 'doctorPage'])->name('doctor.page');
 Route::post('/add-medicament', [MedicamentController::class, 'addMedicament'])->name('medicament.add');
 Route::post('/update-medicament', [MedicamentController::class, 'updateMedicament'])->name('medicament.update');
 Route::post('/delete-medicament', [MedicamentController::class, 'deleteMedicament'])->name('medicament.delete');

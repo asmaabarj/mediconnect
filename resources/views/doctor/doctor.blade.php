@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Mediconnect</title>
+
+</head>
+
+
+<body class="text-gray-800 font-inter">
+    <x-app-layout>
+    </x-app-layout>
+    @include('layouts.sideBarDoc')
+
+    <div class="overflow-x-auto py-8 mt-20">
+        <table class="min-w-[50%] mx-auto bg-white font-[sans-serif]">
+            <thead class="whitespace-nowrap">
+                <tr>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-black">
+                        Medicament Name
+                    </th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-black">
+                        Speciality
+                    </th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold text-black">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            @foreach ($medicaments as $medicament)
+                <tr class="odd:bg-blue-50">
+                    <td class="px-6 py-3 text-sm">
+                        <div class="flex items-center cursor-pointer">
+                            <div class="ml-4">
+                                <p class="text-sm text-black">{{ $medicament->name }}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-3 text-sm">
+                        <div class="flex items-center cursor-pointer">
+                            <div class="ml-4">
+                                <p class="text-sm text-black">{{ $medicament->specialite->name }}
+                                </p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-3">
+                        <div class="flex">
+                            <form method="post" action="{{ route('editeMedicament') }}">
+                                @csrf
+                                <input type="hidden" value="{{ $medicament->id }}"
+                                    name="medicament_id">
+                                <button class="mr-4" type="submit" name="edit"
+                                    value="">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="w-5 fill-black hover:fill-blue-700"
+                                        viewBox="0 0 348.882 348.882">
+                                        <path
+                                            d="m333.988 11.758-.42-.383A43.363 43.363 0 0 0 304.258 0a43.579 43.579 0 0 0-32.104 14.153L116.803 184.231a14.993 14.993 0 0 0-3.154 5.37l-18.267 54.762c-2.112 6.331-1.052 13.333 2.835 18.729 3.918 5.438 10.23 8.685 16.886 8.685h.001c2.879 0 5.693-.592 8.362-1.76l52.89-23.138a14.985 14.985 0 0 0 5.063-3.626L336.771 73.176c16.166-17.697 14.919-45.247-2.783-61.418zM130.381 234.247l10.719-32.134.904-.99 20.316 18.556-.904.99-31.035 13.578zm184.24-181.304L182.553 197.53l-20.316-18.556L294.305 34.386c2.583-2.828 6.118-4.386 9.954-4.386 3.365 0 6.588 1.252 9.082 3.53l.419.383c5.484 5.009 5.87 13.546.861 19.03z"
+                                            data-original="#000000" />
+                                        <path
+                                            d="M303.85 138.388c-8.284 0-15 6.716-15 15v127.347c0 21.034-17.113 38.147-38.147 38.147H68.904c-21.035 0-38.147-17.113-38.147-38.147V100.413c0-21.034 17.113-38.147 38.147-38.147h131.587c8.284 0 15-6.716 15-15s-6.716-15-15-15H68.904C31.327 32.266.757 62.837.757 100.413v180.321c0 37.576 30.571 68.147 68.147 68.147h181.798c37.576 0 68.147-30.571 68.147-68.147V153.388c.001-8.284-6.715-15-14.999-15z"
+                                            data-original="#000000" />
+                                    </svg>
+                                </button>
+                            </form>
+
+                            <form method="post" action="/delete-medicament">
+                                @csrf
+                                <input type="hidden" name="medicament_id"
+                                    value="{{ $medicament->id }}">
+                                <button class="mr-4" type="submit" name="delete"
+                                    value=""
+                                    onclick="return confirm('Are you sure you want to delete {{ $medicament->name }}?')">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="w-5 fill-black hover:fill-red-700"
+                                        viewBox="0 0 24 24">
+                                        <path
+                                            d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z"
+                                            data-original="#000000" />
+                                        <path
+                                            d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z"
+                                            data-original="#000000" />
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+    <div id="addMedicamentModal" class="hidden fixed z-50 inset-0 overflow-y-auto">
+        <div class="bg-white w-full max-w-lg mx-auto rounded-lg shadow-lg p-6">
+         
+                <h3 class="text-lg font-medium text-gray-900">Add New Medicament</h3>
+                <form action="/add-medicament" method="POST" class="mt-4">
+            @csrf
+            <label for="MedicamentName" class="block text-sm font-medium text-gray-700 mt-2">Medicament Name:</label>
+            <input type="text" name="MedicamentName" id="MedicamentName"
+                value=""
+                class="mt-1 p-2 block w-full border-gray-300 rounded-md"
+                placeholder="Enter Medicament name">
+            <div class="mb-4">
+                <label for="speciality" class="block text-sm font-medium text-gray-700">Speciality:</label>
+                <select name="specialite_id" id="speciality"
+                    class="mt-1 p-2 block w-full border-gray-300 rounded-md" >
+                  <option value="1">GENERALISTE</option>
+                </select>
+            </div>
+            <button type="submit" class="bg-blue-500 text-black px-4 py-2 rounded-md">Submit</button>
+            </form>
+        </div>
+    </div>
+    
+</body>
+
+

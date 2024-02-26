@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Medicament;
+use App\Models\Specialite;
 use App\Models\certificate;
 use App\Models\reservation;
 use Illuminate\Http\Request;
@@ -50,5 +52,18 @@ public function showCertificates()
     return view('doctor.certificates', ['certificates' => $certificates]);
 }
 
+public function listMedicamentsAndSpecialitiesDoctor(Request $request)
+{
+    $medicamentId = $request->input('medicament_id');
+
+    $editmedicament = ($medicamentId !== null)
+        ? Medicament::find($medicamentId)
+        : null;
+
+    $medicaments = Medicament::with('specialite')->where('statut', '1')->get();
+    $specialities = Specialite::where('statut', '1')->get();
+
+    return view('doctor.doctor', compact('medicaments', 'specialities', 'editmedicament'));
+}
 
 }

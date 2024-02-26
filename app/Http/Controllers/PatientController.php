@@ -204,28 +204,30 @@ class PatientController extends Controller
     }
     // PatientController.php
 
-   public function consultation()
-{
-    $doctorIds = Certificate::select('reservations.Medecin')
-        ->join('reservations', 'certificates.id_reservation', '=', 'reservations.id')
-        ->where('reservations.patient', Auth::id())
-        ->distinct()
-        ->pluck('Medecin');
-
-    $certificates = Certificate::select('certificates.*', 'reservations.date', 'patients.name as patient_name', 'patients.email as patient_email', 'patients.numTel as patient_phone', 'doctors.name as doctor_name', 'doctors.email as doctor_email', 'doctors.numTel as doctor_phone', 'doctors.desc as doctor_description', 'doctors.photo as doctor_photo')
-        ->join('reservations', 'certificates.id_reservation', '=', 'reservations.id')
-        ->join('users as patients', 'reservations.patient', '=', 'patients.id')
-        ->join('users as doctors', 'reservations.Medecin', '=', 'doctors.id')
-        ->whereIn('reservations.Medecin', $doctorIds)
-        ->get();
-
-    $comments = [];
-    foreach ($certificates as $certificate) {
-        $comments[$certificate->id] = Commentaire::where('id_certificate', $certificate->id)->get();
+    public function consultation()
+    {
+        $doctorIds = Certificate::select('reservations.Medecin')
+            ->join('reservations', 'certificates.id_reservation', '=', 'reservations.id')
+            ->where('reservations.patient', Auth::id())
+            ->distinct()
+            ->pluck('Medecin');
+    
+        $certificates = Certificate::select('certificates.*', 'reservations.date', 'patients.name as patient_name', 'patients.email as patient_email', 'patients.numTel as patient_phone', 'doctors.name as doctor_name', 'doctors.email as doctor_email', 'doctors.numTel as doctor_phone', 'doctors.desc as doctor_description', 'doctors.photo as doctor_photo')
+            ->join('reservations', 'certificates.id_reservation', '=', 'reservations.id')
+            ->join('users as patients', 'reservations.patient', '=', 'patients.id')
+            ->join('users as doctors', 'reservations.Medecin', '=', 'doctors.id')
+            ->whereIn('reservations.Medecin', $doctorIds)
+            ->where('reservations.patient', Auth::id())
+            ->get();
+    
+        $comments = [];
+        foreach ($certificates as $certificate) {
+            $comments[$certificate->id] = Commentaire::where('id_certificate', $certificate->id)->get();
+        }
+    
+        return view('certificat', ['certificates' => $certificates, 'comments' => $comments]);
     }
-
-    return view('certificat', ['certificates' => $certificates, 'comments' => $comments]);
-}
+    
 
 
 
