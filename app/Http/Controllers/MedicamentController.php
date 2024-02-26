@@ -53,14 +53,7 @@ class MedicamentController extends Controller
         $patientCount = User::where('role', 'patient')->count();
 
 
-        if (auth()->user()->role === 'Doctor') {
-            return view('doctor.DoctorPage', [
-                'medicaments' => $medicaments,
-                'specialities' => $specialities,
-                'editmedicament' => $editmedicament,
-            ]);
-        }
-        if (auth()->user()->role === 'Admin') {
+    
             return view('admin.admin', [
                 'medicaments' => $medicaments,
                 'specialities' => $specialities,
@@ -75,7 +68,7 @@ class MedicamentController extends Controller
       
         
         
-    }
+    
 
 
 
@@ -85,8 +78,13 @@ class MedicamentController extends Controller
         $medicament = Medicament::findOrFail($medicamentId);
         $medicament->update(['statut' => '0']);
        
+        if (auth()->user()->role === 'Admin'){
             return redirect('/admin');
-       
+        }
+        if(auth()->user()->role === 'Doctor'){
+            return redirect('/doctor');
+    
+        }          
     
         }    
     public function UpdateSpecialities(Request $request)
