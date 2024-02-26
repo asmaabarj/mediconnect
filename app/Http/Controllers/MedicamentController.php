@@ -110,8 +110,13 @@ class MedicamentController extends Controller
             $medicamen->save();
         }
 
-        return redirect('/admin');
-
+        if (auth()->user()->role === 'Admin'){
+            return redirect('/admin');
+        }
+        if(auth()->user()->role === 'Doctor'){
+            return redirect('/doctor');
+    
+        }   
 
     }
     }

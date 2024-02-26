@@ -108,12 +108,12 @@
                 <u>Manage Medicaments</u>
             </div>
             <button id="addMedicamentButton"
-                class="flex justify-between mb-4 items-start text-m font-semibold text-green-900 hover:bg-green-100 px-4 py-1 mt-10 rounded-[4px] border-green-800 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] border-solid border-[1px]">
+                class="flex absolute left-80 top-16 justify-between mb-4 items-start text-m font-semibold text-green-900 hover:bg-green-100 px-4 py-1 mt-10 rounded-[4px] border-green-800 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] border-solid border-[1px]">
                 Add
             </button>
         </div>
 
-        <div class="overflow-x-auto py-8">
+        <div class="overflow-x-auto mt-24 py-8">
             <table class="min-w-[50%] mx-auto bg-white font-[sans-serif]">
                 <thead class="whitespace-nowrap">
                     <tr>
@@ -147,7 +147,7 @@
                         </td>
                         <td class="px-6 py-3">
                             <div class="flex">
-                                <form method="post" action="{{ route('editeMedicament') }}">
+                                <form method="get" action="/doctor">
                                     @csrf
                                     <input type="hidden" value="{{ $medicament->id }}"
                                         name="medicament_id">
