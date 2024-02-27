@@ -34,7 +34,9 @@ class PatientController extends Controller
             })->get(['id'])->toArray();
 
             $averageRatings[$doctor->id] = Rating::whereIn('id_certificate', $certificateIds)->avg('note')-1;
-            
+            if ($averageRatings[$doctor->id] === -1) {
+                $averageRatings[$doctor->id] = 0;
+            }
         }
 
         $favorites = Favori::where('favori', '1')->where('patient', Auth::id())->get();
