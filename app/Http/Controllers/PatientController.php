@@ -35,8 +35,8 @@ class PatientController extends Controller
 
             $averageRatings[$doctor->id] = Rating::whereIn('id_certificate', $certificateIds)->avg('note')-1;
             if ($averageRatings[$doctor->id] === -1) {
-                $averageRatings[$doctor->id] = 0;
-            }
+    $averageRatings[$doctor->id] = 0;
+}
         }
 
         $favorites = Favori::where('favori', '1')->where('patient', Auth::id())->get();
@@ -169,7 +169,7 @@ class PatientController extends Controller
             ['label' => '15h-16h', 'start' => '15:00', 'end' => '16:00'],
         ];
         $now = Carbon::now('Africa/Casablanca');
-
+ 
         if ($now->hour >= 23 && $now->minute >= 58) {
             Reservation::where('statut', '1')
                 ->update([
